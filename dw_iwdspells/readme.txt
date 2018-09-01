@@ -1,5 +1,76 @@
+IWDSPELLS CONVERTER
+
+(crude readme)
+
+Overview
+
+This is an automated converter to pull spells from IWDEE to BG(2)EE, using leftover pieces of code from the converter that underlies IWDEE (and that descends from the old IWD-in-BG2 project). It works by starting with a spell file, and then iteratively going through every file that spell needs, every file those files need, and so forth. En route, it collects every relevant string from every language present in BG2. For wizard spells, scrolls are added, shadowing existing game scrolls (for instance, SHOUT scrolls occur everywhere CONE_OF_COLD scrolls do now).
+
+Spells are added via ADD_SPELL; scrolls are slotted into empty spaces in the SCRL[0-9AZ][0-9A-Z] namespace. A few other files are renamed to avoid namespace conflicts; otherwise the IWD names are preserved. Files that are already present unmodified (or nearly so) don't get copied over.
+
+It works as a standalone mod, but might be more useful included into something else. The virtues of automated conversion are (i) less change of errors creeping in; (ii) we can immediately and simply update to reflect any changes in IWDEE.
+
+Spells implemented
+
+See the files in data (iwd_arcane.2da, iwd_divine.2da, iwd_bard.2da) for the totally-reliable list. It's pretty much every IWD arcane and divine spell not already in BG2 (I don't do Contact Other Plane, for obvious reasons), plus (renamed) Mordenkainen's Sword, plus IWD versions of Conjure Elemental, plus all the bard songs.
+
+Standalone Installation
+
+1. Run the mod ("setup-dw_iwdspells") in your IWDEE root folder and install the one permitted component. (It doesn't matter what language you're using.) A folder, "dw_iwdspells_resource", will have been created.
+
+Your IWDEE install should be completely unaffected, incidentally.
+
+2. Move that folder into your BG(2)EE root folder.
+
+3. Install the mod *again* in your BG(2)EE folder. There are 3 components: arcane spells, divine spells, bardsong.
+
+Installation in another mod
+
+1. Follow steps 1-2 above to create dw_iwdspells_resource
+
+2. Put that folder somewhere in your mod. (It doesn't matter where, and you can rename it if you like.)
+
+3. Put the folders "sfo", "ssl", "lib", "data", and "resource" somewhere in your mod. (Again, anywhere you like.)
+
+4. Put the "dw_iwdspells_arcane.tra" and "dw_iwdspells_divine.tra" files, from tra/%LANGUAGE%, wherever your TRA files live. 
+
+5. Put the file "dw_iwdspells.ini" somewhere in your mod.
+
+6. Put this bit of code in your ALWAYS (or somewhere else it'll execute before the component is used), edited appropriately:
+
+<beginning of code>
+   // replace "dw_iwdspells" with your mod root directory
+   OUTER_SPRINT scsroot dw_iwdspells 
+
+   // replace "dw_iwdspells_resource" with the FULL path (relative to BG2EE) to this folder, e.g. "mymod/dw_iwdspells_resource" if you put it into your mod
+   OUTER_SPRINT resource_loc dw_iwdspells_resource 
+
+   // set all these to point to wherever you put the folders (relative to your mod!)
+   OUTER_SPRINT iwdspells_data data
+   OUTER_SPRINT iwdspells_lib lib
+   OUTER_SPRINT sfo_loc sfo
+   OUTER_SPRINT ssl_loc ssl
+   OUTER_SPRINT iwdspells_resource resource
+
+   // set this to point to wherever you put the file (ABSOLUTE LOCATION, e.g. mymod/dw_iwdspells.ini)
+   OUTER_SPRINT inifile "%scsroot%.ini"
+
+   // set this to point to wherever your TRA files live
+   OUTER_SPRINT iwdspells_trabase tra
+
+   // don't edit this
+   INCLUDE ~%scsroot%/%iwdspells_lib%/always.tph~
+<end of code>
+
+7. Include the content of the three components in setup-dw_iwdspells.tp2 wherever you want them.
+
+Translating the mod
+
+Assuming your language is one of the languages in which IWDEE is installed, all you have to do is translate the dozen or so strings in the two tra files above (plus the three or four installation strings in setup.tra if you're using it standalone).
 
 Modifications made to the spell system
+
+While this is a fairly faithful implementation, there are a few places where thematic, conceptual or logical incompatibilities between the BG2 and IWD systems caused trouble. Sorting these out is a judgement call; I don't pretend these decisions are the only sensible choices.
 
 1) Issue: The IWD and BG2 versions of Mordenkainen's Sword are completely different, but both quite cool
 

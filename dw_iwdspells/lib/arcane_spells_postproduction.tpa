@@ -7,7 +7,7 @@ DEFINE_ACTION_FUNCTION arcane_spells_postproduction STR_VAR tra="" BEGIN
               LAF run STR_VAR file=elemental_summoning location="%iwdspells_lib%" END
               LAF force_blade END
           END ELSE BEGIN
-            WITH_TRA "%scsroot%/%tra%" BEGIN
+            WITH_TRA "%tra%" BEGIN
               LAF summoned_monsters_arcane END
               LAF run STR_VAR file=elemental_summoning location="%iwdspells_lib%" END
               LAF force_blade END

@@ -1,6 +1,6 @@
 
 ACTION_IF !GAME_IS "eet bgee bg2ee iwdee" BEGIN  // enforce enhanced-edition
-   FAIL @4
+   FAIL "Requires enhanced edition"
 END
 
 ////////////////////////////////////////////////////////
