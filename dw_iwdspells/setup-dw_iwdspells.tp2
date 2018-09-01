@@ -38,10 +38,11 @@ ENGLISH
 ////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-
+/*
 BEGIN "Test" DESIGNATED 0
 
 LAF run STR_VAR file=test location=test END
+*/
 
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
@@ -63,7 +64,7 @@ LAF install_iwd_spell_resources
                tra=iwdspells.tra
                biff="dw#iwdm"
                afterwards="arcane_spells_postproduction"
-               afterwards_tra="%iwdspells_trabase%/%LANGUAGE%/arcane.tra"
+               afterwards_tra="dw_iwdspells_arcane.tra"
                bam_copy="bam_copy_arcane.2da"
                green_bams="green_spells_arcane.2da"
                ds="%iwdspells_data%/ds_iwd_arcane.2da"
@@ -83,7 +84,7 @@ LAF install_iwd_spell_resources
                tra=iwdspells.tra
                biff="dw#iwdp"
                afterwards="divine_spells_postproduction"
-               afterwards_tra="%iwdspells_trabase%/%LANGUAGE%/divine.tra"
+               afterwards_tra="dw_iwdspells_divine.tra"
                bam_copy="bam_copy_divine.2da"
                green_bams=""
                ds="%iwdspells_data%/ds_iwd_divine.2da"

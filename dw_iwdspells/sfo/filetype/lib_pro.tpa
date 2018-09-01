@@ -5,12 +5,14 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 DEFINE_ACTION_FUNCTION clone_pro  // beware-this only works for one projectile at a time
+    INT_VAR allow_missing=0
     STR_VAR
            pro=""
            edits=""
            editstring=""
-           allow_missing="no"
-           location="override"
+           location=""
+           locbase=""
+           locabs=""
     RET pro_num
     BEGIN
          LAUNCH_ACTION_FUNCTION clone_template
@@ -21,6 +23,8 @@ DEFINE_ACTION_FUNCTION clone_pro  // beware-this only works for one projectile a
                           editstring
                           allow_missing
                           location
+                          locbase
+                          locabs
          END
          LAF return_first_pair STR_VAR list= ~%pro%~ RET new=value END
          OUTER_SPRINT input ~ADD_PROJECTILE "%location%/%new%.pro"~
@@ -40,8 +44,10 @@ DEFINE_ACTION_FUNCTION edit_pro
            pro=""
            edits=""
            editstring=""
-           allow_missing="no"
+           allow_missing=0
            location=""
+           locbase=""
+           locabs=""
     BEGIN
          LAUNCH_ACTION_FUNCTION edit_template
                   STR_VAR file_list= ~%pro%~
@@ -50,6 +56,8 @@ DEFINE_ACTION_FUNCTION edit_pro
                           editstring
                           allow_missing
                           location
+                          locbase
+                          locabs
          END
 END
 
