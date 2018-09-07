@@ -127,17 +127,6 @@ BEGIN
     END
 END
 
-DEFINE_ACTION_FUNCTION action_return_first_entry
-     STR_VAR list=""
-             separator=" "
-     RET list
-         entry
-BEGIN
-     OUTER_INNER_PATCH ~~ BEGIN
-        LPF return_first_entry STR_VAR list separator RET list=list entry=entry END
-     END
-END
-
 DEFINE_ACTION_FUNCTION return_first_entry
      STR_VAR list=""
              separator=" "
@@ -178,18 +167,6 @@ BEGIN
      END
 END
 
-
-DEFINE_ACTION_FUNCTION action_return_first_pair
-     STR_VAR list=""
-     RET key
-         value
-         list
-BEGIN
-     OUTER_INNER_PATCH ~~ BEGIN
-        LPF return_first_pair STR_VAR list RET list=list key=key value=value END
-     END
-END
-
 DEFINE_ACTION_FUNCTION return_first_pair
      STR_VAR list=""
      RET key
@@ -215,7 +192,7 @@ DEFINE_ACTION_FUNCTION read_in_list
              locabs=""
      RET list
 BEGIN
-     LAF action_get_directory STR_VAR location locbase locabs RET file_loc=directory END
+     LAF get_directory STR_VAR location locbase locabs RET file_loc=directory END
      OUTER_SPRINT file "%file_loc%/%file%"
      COPY ~%file%~ ~%workspace%~
            SPRINT list ""
@@ -283,7 +260,7 @@ DEFINE_ACTION_FUNCTION read_in_assoc_array
              locabs=""
      RET list
 BEGIN
-     LAF action_get_directory STR_VAR location locbase locabs RET file_loc=directory END
+     LAF get_directory STR_VAR location locbase locabs RET file_loc=directory END
      OUTER_SPRINT file "%file_loc%/%file%"
      COPY ~%file%~ ~%workspace%~
            REPLACE_TEXTUALLY "=>" " "

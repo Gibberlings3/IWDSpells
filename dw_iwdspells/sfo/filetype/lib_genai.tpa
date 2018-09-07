@@ -10,7 +10,7 @@ DEFINE_ACTION_MACRO read_in_genai_item_data BEGIN
        ACTION_TRY
          COPY_EXISTING_REGEXP GLOB ~%tutu_var%.*\.itm~ ~override~
              SPRINT filename ~%SOURCE_RES%~
-             LPF identify_weapon_patch RET twohanded=twohanded type=type proftype=proftype enchantment=enchantment damagetype=damagetype END
+             LPF identify_weapon_patch RET twohanded type proftype enchantment damagetype END
              TO_UPPER filename
              SET $genai_twohanded(~%filename%~)=twohanded
              SET $genai_type(~%filename%~)=type
@@ -105,14 +105,21 @@ BEGIN
            END
            // actually do the allocations
            LPF CRE_wipe_proficiencies END
-           PATCH_FOR_EACH profname IN onhandprof offhandprof rangedprof style BEGIN
-              SET profcode= ~%profname%~
+           PATCH_FOR_EACH profname IN onhandprof offhandprof rangedprof style BEGIN   SET profcode= ~%profname%~
+                 SET value= ~%profname%num~
+                 PATCH_IF value>0 BEGIN
+                    SET_BG2_PROFICIENCY "%profname%" value
+                 END
+
+          /*    SET profcode= ~%profname%~
               PATCH_IF profcode>0 BEGIN
                  SET value= ~%profname%num~
                  PATCH_IF value>0 BEGIN
                     LPF add_entry_inline STR_VAR arguments=~opcode=>233 parameter1=>%value% parameter2=>%profcode% target=>0~ type=effect file_ext=CRE END
                  END
               END
+              
+           */
            END
 END
 

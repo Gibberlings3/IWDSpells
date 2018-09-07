@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////               overarching clone
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                                                                  
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 DEFINE_ACTION_FUNCTION clone_spell
@@ -91,7 +91,7 @@ DEFINE_ACTION_FUNCTION install_spell
     RET newname
     BEGIN
 
-     LAF action_get_directory STR_VAR location locbase locabs RET file_loc=directory END
+     LAF get_directory STR_VAR location locbase locabs RET file_loc=directory END
 
 
          ACTION_IF (!("%spell%" STRING_CONTAINS_REGEXP " ") && "%idsname%" STRING_COMPARE "") BEGIN
@@ -606,7 +606,7 @@ BEGIN
     PATCH_IF VARIABLE_IS_SET  ~%%spellname%%~ BEGIN
     END ELSE
     PATCH_IF VARIABLE_IS_SET ~%percentage%WIZARD_%spellname%%percentage%~ AND VARIABLE_IS_SET  ~%percentage%CLERIC_%spellname%%percentage%~ BEGIN
-        PATCH_PRINT ~Spell %spellname% is ambiguous between WIZARD_%spellname% and CLERIC_%spellname%; assuming WIZARD~
+      //  PATCH_PRINT ~Spell %spellname% is ambiguous between WIZARD_%spellname% and CLERIC_%spellname%; assuming WIZARD~
         SPRINT ~spellname~ ~WIZARD_%spellname%~
     END ELSE
     PATCH_IF VARIABLE_IS_SET  ~%percentage%WIZARD_%spellname%%percentage%~ BEGIN
@@ -752,21 +752,25 @@ BEGIN
              PATCH_IF (value=1 || conceal=1) BEGIN
                   WRITE_LONG 0x8 ~-1~
              END ELSE BEGIN
-               LPF check_ini STR_VAR ini=Run_Silent RET value END
-               PATCH_IF value=0 BEGIN
                   READ_STRREF 0x8 ~spellname~
                   SPRINT ~addon~ @14300
                   SPRINT ~newname~ ~%spellname%~^ ~%addon%~
                   SAY_EVALUATED 0x8 ~%newname%~
-               END
              END
              PATCH_MATCH "%spell_ID%" WITH
              CLERIC_BLADE_BARRIER CLERIC_GLOBE_OF_BLADES CLERIC_AURA_OF_FLAMING_DEATH WIZARD_FIRE_SHIELD_RED WIZARD_FIRE_SHIELD_BLUE NPC_BLADE_BARRIER
              BEGIN
-                  LPF delete_entry STR_VAR type=effect arguments="opcode=174" file_ext=SPL END
+                  LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete=174 END
+                //  LPF delete_entry STR_VAR type=effect arguments="opcode=174" file_ext=SPL END
              END
              DEFAULT
-                  LPF delete_entry STR_VAR type=effect arguments="opcode is_in [139 174 215 141 50]" file_ext=SPL END
+                  LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete=139 END
+                  LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete=174 END
+                  LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete=141 END
+                  LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete=215 END
+                  LPF DELETE_SPELL_EFFECT INT_VAR opcode_to_delete=50 END
+
+              //    LPF delete_entry STR_VAR type=effect arguments="opcode is_in [139 174 215 141 50]" file_ext=SPL END
              END
        // BUT_ONLY - should happen anyway
       END
@@ -816,8 +820,8 @@ DEFINE_PATCH_FUNCTION SPL_build BEGIN
   // name
    WRITE_LONG 0x8 ~-1~
    WRITE_LONG 0xc ~-1~
-   // spell type
-   WRITE_SHORT 0x1c 2
+   // spell type - default to INNATE
+   WRITE_SHORT 0x1c 3
    // primary
    WRITE_SHORT 0x25 9
    // level
@@ -1504,7 +1508,7 @@ DEFINE_ACTION_FUNCTION collect_spell_icons
             spell=""
             resref=""
 BEGIN
-      LAF action_get_directory STR_VAR location locbase locabs RET file_loc=directory END
+      LAF get_directory STR_VAR location locbase locabs RET file_loc=directory END
       CLEAR_IDS_MAP
       LAF get_spellcode STR_VAR input="%spell%" RET spell_resref=value END
       ACTION_FOR_EACH letter IN a b c BEGIN

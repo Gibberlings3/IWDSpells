@@ -45,7 +45,7 @@ BEGIN
      "" null BEGIN END
      DEFAULT
         PATCH_PRINT ~%warning%%arguments%~
-        LPF patch_log_this STR_VAR file=sfo_warnings.txt input= ~%warning%%arguments%~ repeat END
+        LPF log_this STR_VAR file=sfo_warnings.txt input= ~%warning%%arguments%~ repeat END
      END
 END
 
@@ -396,16 +396,6 @@ BEGIN
    END
 END
 
-DEFINE_ACTION_FUNCTION action_get_directory
-        STR_VAR location=""  locbase="" locabs=""
-        RET directory
-BEGIN
-   OUTER_INNER_PATCH ~~ BEGIN
-      LPF get_directory STR_VAR location locbase locabs RET directory=directory END
-   END
-END
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////               include all the listed files
@@ -429,7 +419,7 @@ BEGIN
        PRINT ~Including file(s) %file%~
        LAF get_directory STR_VAR location locbase locabs RET file_loc=directory END
        OUTER_WHILE ~%file%~ STRING_COMPARE ~~ BEGIN
-           LAF action_return_first_entry STR_VAR list= ~%file%~ RET entry=entry file=list END
+           LAF return_first_entry STR_VAR list= ~%file%~ RET entry=entry file=list END
            COPY ~%file_loc%/%entry%~ ~%workspace%/%entry%~
               LPF define_make_patch END
               LPF define_push END
@@ -440,6 +430,10 @@ END
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////               include all the listed files with a .tpa suffix, assume each contains a function with the same name as itself, and run that function
+/////////////
+/////////////               when doing so, implement the MAKE_PATCH and PUSH pseudocode
+/////////////
+/////////////               If it's the outermost "run" being called, also make a label, called dw#[func]
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -451,6 +445,13 @@ DEFINE_ACTION_FUNCTION run
                locabs=""
                version=""
 BEGIN
+       ACTION_IF !VARIABLE_IS_SET SFO_reserved_outer_run BEGIN
+          OUTER_SET SFO_reserved_outer_run=1
+          OUTER_SET make_labels=1
+       END ELSE BEGIN
+          OUTER_SET make_labels=0
+       END
+
        ACTION_IF ~%file%~ STRING_EQUAL_CASE ~~ BEGIN
           ACTION_IF ~%files%~ STRING_EQUAL_CASE ~~ BEGIN
               PRINT ~Warning: you've called an include with no argument~
@@ -466,6 +467,9 @@ BEGIN
               LPF define_make_patch END
               LPF define_push END
            INCLUDE ~%workspace%/%entry%.tpa~
+           ACTION_IF make_labels BEGIN
+              LAF make_label STR_VAR label="dw#%entry%" END
+           END
            LAF ~%entry%~ STR_VAR version= ~%version%~ END
        END
 END
@@ -484,8 +488,7 @@ DEFINE_ACTION_FUNCTION log_this
                 location=""
                 locbase=""
 BEGIN
-    ACTION_IF !~%file%~ STRING_EQUAL_CASE ~auto_function_list.txt~ BEGIN  // in case we left any in place!
-        ACTION_IF debug_variable>0 BEGIN
+        ACTION_IF debug_variable=2 BEGIN
            PRINT ~trying to append %input% to %file%; location defined by locabs=%locabs% location=%location% locbase=%locbase%~
          END
         LAF get_directory STR_VAR location locabs locbase RET directory END
@@ -494,20 +497,6 @@ BEGIN
         END
         ACTION_IF (~%repeat%~ STRING_COMPARE_CASE ~no~) || !FILE_CONTAINS_EVALUATED ("%directory%/%file%" "%input%\($\|%WNL%\|%MNL%\|%LNL\)")BEGIN
            APPEND_OUTER ~%directory%/%file%~ ~%input%~
-        END 
-    END
-END
-
-DEFINE_PATCH_FUNCTION patch_log_this  // legacy
-        STR_VAR file=""
-                input=""
-                repeat="yes"
-                locabs="%workspace%"
-                location=""
-                locbase=""
-BEGIN
-        INNER_ACTION BEGIN
-          LAF log_this STR_VAR file input repeat locbase locabs location END
         END
 END
 
@@ -856,7 +845,7 @@ DEFINE_ACTION_FUNCTION process_table
             RET value
 BEGIN
   ACTION_IF "%inline%" STRING_COMPARE_CASE yes BEGIN
-     LAF action_get_directory STR_VAR location locbase locabs RET directory END
+     LAF get_directory STR_VAR location locbase locabs RET directory END
      ACTION_IF !FILE_EXISTS "%directory%/%table%" BEGIN
           FAIL "Tried to process table %table% but it doesn't exist at %directory%"
      END
@@ -937,7 +926,7 @@ DEFINE_ACTION_FUNCTION list_files
             postfix=""
     RET list
 BEGIN
-      LAF action_get_directory STR_VAR location locbase RET file_loc=directory END
+      LAF get_directory STR_VAR location locbase RET file_loc=directory END
       OUTER_SPRINT list ""
       ACTION_BASH_FOR "%file_loc%" ".*\.%postfix%" BEGIN
          OUTER_SPRINT list "%list% ~%BASH_FOR_FILESPEC%~"
@@ -984,7 +973,7 @@ END
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-DEFINE_ACTION_FUNCTION quicksort 
+DEFINE_ACTION_FUNCTION quicksort
       STR_VAR list=""
       RET list
 BEGIN
@@ -1014,5 +1003,21 @@ DEFINE_PATCH_FUNCTION quicksort
 BEGIN
    INNER_ACTION BEGIN
       LAF quicksort STR_VAR list RET list END
+   END
+END
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////      debugger
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+DEFINE_ACTION_FUNCTION speed_debug
+   INT_VAR var=4
+   STR_VAR string="Unspecified debug check"
+BEGIN
+   ACTION_IF debug_variable=var BEGIN
+      PRINT "%string%"
+      ACTION_READLN blook
    END
 END

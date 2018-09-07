@@ -63,12 +63,11 @@ DEFINE_ACTION_FUNCTION ~compile_ssl_to_bcs_core~ INT_VAR skip_bcs=0 STR_VAR scri
 	  END ELSE BEGIN
 		AT_NOW ~%scsroot%\%ssl_loc%\ssl.exe "%full_loc%\%script% %sslvariables% -o %workspace%/ssl_out -l %ssllibrary% %workspace%\autolib %booleanstring%"~
 	  END
-	  COPY ~%workspace%\ssl_out\%script%.baf~ ~%workspace%\ssl_out~
-	      REPLACE_TEXTUALLY ssl_null_entry ""
-	      PATCH_IF !enhanced_edition BEGIN
+	  ACTION_IF !enhanced_edition BEGIN
+	     COPY ~%workspace%\ssl_out\%script%.baf~ ~%workspace%\ssl_out~
                 LPF ssl_ee_to_vanilla END
-              END
-          BUT_ONLY
+             BUT_ONLY
+          END
 	  ACTION_IF skip_bcs=0 BEGIN
 	   ACTION_IF ~%rename_to%~ STRING_COMPARE_CASE ~~ BEGIN
 	     COPY ~%workspace%\ssl_out\%script%.baf~ ~%workspace%\ssl_out\%rename_to%.baf~
@@ -92,7 +91,7 @@ BEGIN
                LAF warning STR_VAR warning="Warning: SSL compiler called with empty argument" END
          END
          OUTER_WHILE ~%script%~ STRING_COMPARE ~~ BEGIN
-               LAF action_return_first_entry STR_VAR list=~%script%~ RET script=list script_to_call=entry END
+               LAF return_first_entry STR_VAR list=~%script%~ RET script=list script_to_call=entry END
                LAF compile_ssl_to_bcs_core STR_VAR script=~%script_to_call%~ location locbase locabs variables booleans rename_to inline END
          END
 
@@ -105,7 +104,7 @@ BEGIN
                LAF warning STR_VAR warning="Warning: SSL compiler called with empty argument" END
          END
          OUTER_WHILE ~%script%~ STRING_COMPARE ~~ BEGIN
-               LAF action_return_first_entry STR_VAR list= ~%script%~ RET script=list script_to_call=entry END
+               LAF return_first_entry STR_VAR list= ~%script%~ RET script=list script_to_call=entry END
                LAF compile_ssl_to_bcs_core INT_VAR skip_bcs=1 STR_VAR script=  ~%script_to_call%~ location locbase locabs variables booleans inline  END
          END
 
@@ -149,7 +148,7 @@ BEGIN
        ACTION_IF ~%inline%~ STRING_EQUAL_CASE yes BEGIN
         OUTER_SPRINT file_loc ~.../stratagems-inline~
        END ELSE BEGIN
-          LAF action_get_directory STR_VAR location locbase RET file_loc=directory END
+          LAF get_directory STR_VAR location locbase RET file_loc=directory END
        END
        OUTER_WHILE ~%file%~ STRING_COMPARE ~~ BEGIN
            LAF return_first_entry STR_VAR list= ~%file%~ RET entry file=list END
@@ -246,7 +245,7 @@ BEGIN
            ACTION_IF ~%inline%~ STRING_EQUAL_CASE yes BEGIN
                OUTER_SPRINT file_loc ~.../stratagems-inline~
            END ELSE BEGIN
-               LAF action_get_directory STR_VAR location locbase locabs RET file_loc=directory END
+               LAF get_directory STR_VAR location locbase locabs RET file_loc=directory END
            END
        END
        OUTER_WHILE ~%file%~ STRING_COMPARE ~~ BEGIN
@@ -284,9 +283,9 @@ BEGIN
               OUTER_SPRINT file ~%files%~
           END
        END
-       LAF action_get_directory STR_VAR location locbase RET file_loc=directory END
+       LAF get_directory STR_VAR location locbase RET file_loc=directory END
        OUTER_WHILE ~%file%~ STRING_COMPARE ~~ BEGIN
-          LAF action_return_first_pair STR_VAR list= ~%file%~ RET oldscript=key newscript=value file=list END
+          LAF return_first_pair STR_VAR list= ~%file%~ RET oldscript=key newscript=value file=list END
           COPY ~%file_loc%\%oldscript%.baf~ ~%workspace%\%newscript%.baf~
           COMPILE EVALUATE_BUFFER ~%workspace%\%newscript%.baf~
        END
@@ -307,7 +306,7 @@ DEFINE_ACTION_FUNCTION clone_extend
                inline="no"
 BEGIN
        ACTION_IF ~%arguments%~ STRING_COMPARE_CASE ~~ BEGIN
-          LAF action_return_first_pair STR_VAR list= ~%arguments%~ RET source=key script=value arguments=list END
+          LAF return_first_pair STR_VAR list= ~%arguments%~ RET source=key script=value arguments=list END
           COPY_EXISTING ~%source%.bcs~ ~override/%script%.bcs~
           ACTION_IF ~%top%~ STRING_EQUAL_CASE ~no~ BEGIN
                LAF extend STR_VAR files= ~%script%~ location locbase inline bottom= ~%script%~ END
@@ -366,7 +365,7 @@ DEFINE_ACTION_FUNCTION swap_text
 BEGIN
     OUTER_SPRINT files "%files%%file%"
     OUTER_WHILE ~%files%~ STRING_COMPARE_CASE ~~ BEGIN
-      LAF action_return_first_entry STR_VAR list= ~%files%~ RET files=list entry=entry END
+      LAF return_first_entry STR_VAR list= ~%files%~ RET files=list entry=entry END
       ACTION_IF tv BEGIN
             OUTER_SPRINT ~entry~ ~%tutu_var%%entry%~
       END
@@ -693,7 +692,7 @@ DEFINE_ACTION_FUNCTION clone_script
     STR_VAR script=""
 BEGIN
    ACTION_IF ~%script%~ STRING_COMPARE_CASE ~~ BEGIN
-      LAF action_return_first_pair STR_VAR list= ~%script%~ RET script=list old=key new=value END
+      LAF return_first_pair STR_VAR list= ~%script%~ RET script=list old=key new=value END
       COPY_EXISTING ~%old%.bcs~ ~override/%new%.bcs~
       LAF clone_script STR_VAR script END
    END

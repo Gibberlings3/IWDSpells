@@ -831,7 +831,7 @@ END
 
 
 DEFINE_PATCH_FUNCTION ITM_log_me STR_VAR filename="" arguments="" BEGIN
-   LPF patch_log_this STR_VAR file= ~%arguments%~ input= ~%filename%~ repeat=no END
+   LPF log_this STR_VAR file= ~%arguments%~ input= ~%filename%~ repeat=no END
 END
 
 /////////////////////////////////////////////////////////////////////////////////////////////

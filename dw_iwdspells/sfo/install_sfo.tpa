@@ -85,6 +85,10 @@ END
 // check what install we're running on
 ///////////////////////////////////////////////////
 
+  ACTION_IF debug_variable=3 BEGIN
+     PRINT "checking for game type: press a key to continue"
+     ACTION_READLN blook
+  END
 
   OUTER_SET enhanced_edition = ( GAME_IS ~bgee bg2ee eet~ ? 1 : 0)
   OUTER_SET is_bg1 = ( GAME_IS ~bgee tutu tutu_totsc bgt eet~ ? 1 : 0)
@@ -116,6 +120,11 @@ END
 // correct missing section in kensai clab file
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  ACTION_IF debug_variable=3 BEGIN
+     PRINT "Fixing KENSAI: press a key to continue"
+     ACTION_READLN blook
+  END
+
 COPY_EXISTING clabfi04.2da override
    // diagnostic: can we read entry 40 from the second row with at least 10 entries?
    PATCH_SILENT
@@ -131,6 +140,11 @@ BUT_ONLY
 // Some IDS entries are present on some but not all versions of the game
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+  ACTION_IF debug_variable=3 BEGIN
+     PRINT "systematising spell.ids: press a key to continue"
+     ACTION_READLN blook
+  END
 
 ACTION_IF !FILE_EXISTS "override/spell.ids" BEGIN
        COPY_EXISTING spell.ids override
@@ -167,6 +181,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spell_ids_missing BEGIN
    4935=>BLACKGUARD_SUMMON_FALLEN_DEVA
 
 END
+
 ACTION_PHP_EACH spell_ids_missing AS code=>name BEGIN
       ACTION_IF !FILE_CONTAINS_EVALUATED ("override/spell.ids" "%code%[ %TAB%]+%name%") BEGIN
          APPEND "spell.ids" "%code% %name%"
@@ -177,15 +192,14 @@ END
 // some third-party mods unhelpfully map WIZARD_DISPEL_MAGIC to SPWI326; change this back
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  ACTION_IF debug_variable=3 BEGIN
+     PRINT "Remapping DISPEL_MAGIC: press a key to continue"
+     ACTION_READLN blook
+  END
+
 ACTION_IF enhanced_edition BEGIN
   COPY_EXISTING spell.ids override
-    COUNT_2DA_ROWS 2 rowcount
-    FOR (i=1;i<rowcount;i+=1) BEGIN
-       READ_2DA_ENTRY i 1 2 ids
-       PATCH_IF "%ids%" STRING_EQUAL "WIZARD_DISPEL_MAGIC" BEGIN
-           SET_2DA_ENTRY i 0 2 2302
-       END
-    END
+          REPLACE_TEXTUALLY "23[0-9][0-9] +WIZARD_DISPEL_MAGIC" "2302 WIZARD_DISPEL_MAGIC"
   BUT_ONLY
 END
 
@@ -193,8 +207,14 @@ END
 // in case Fixpack hasn't already done it, disable the 0-byte items & broken areas (we do this here for the benefit of the count section)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  ACTION_IF debug_variable=3 BEGIN
+     PRINT "Disabling broken stuff: press a key to continue"
+     ACTION_READLN blook
+  END
+
 SILENT
 ACTION_FOR_EACH bad IN "iplot01k.itm" "iplot04g.itm" "iplot04h.itm" "iplot04i.itm" "xr2400.are" "xr2600.are" BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "%bad%" BEGIN
    ACTION_TRY
        COPY_EXISTING "%bad%" override
             READ_BYTE 0x0 0
@@ -202,31 +222,53 @@ ACTION_FOR_EACH bad IN "iplot01k.itm" "iplot04g.itm" "iplot04h.itm" "iplot04i.it
    WITH DEFAULT
        DISABLE_FROM_KEY "%bad%"
    END
+  END
 END
 VERBOSE
-
 
 ///////////////////////////////////////////////////
 // read in ini
 ///////////////////////////////////////////////////
 
+  ACTION_IF debug_variable=3 BEGIN
+     PRINT "Reading in INI: press a key to continue"
+     ACTION_READLN blook
+  END
+
   ACTION_IF FILE_EXISTS ~%inifile%~ BEGIN
     COPY ~%inifile%~ ~%workspace%~
-     READ_2DA_ENTRIES_NOW ~scs_ini_array~ 1
-        FOR (i=0;i<~scs_ini_array~;i=i+1) BEGIN
+     REPLACE_TEXTUALLY "=" " "
+     REPLACE_TEXTUALLY "\[.*\]" ""
+     READ_2DA_ENTRIES_NOW ~scs_ini_array~ 2
+     FOR (i=0;i<~scs_ini_array~;i=i+1) BEGIN
           READ_2DA_ENTRY_FORMER ~scs_ini_array~ ~i~ 0 ~key~
           READ_2DA_ENTRY_FORMER ~scs_ini_array~ ~i~ 1 ~value~
           TO_LOWER key
-          SPRINT $scs_ini_hash(~%key%~) ~%value%~
+          SPRINT $scs_ini_hash("%key%") "%value%"
         END
     BUT_ONLY
   END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Determine status of auto-built functions
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF FILE_EXISTS "%scsroot%/%sfo_loc%/SFO_autofunc.tpa" BEGIN
+   INCLUDE "%scsroot%/%sfo_loc%/SFO_autofunc.tpa"
+   OUTER_SET SFO_reserved_build_function_control=2
+END ELSE BEGIN
+   OUTER_SET SFO_reserved_build_function_control=1
+END
+
 
 ///////////////////////////////////////////////////
 // include core function library
 ///////////////////////////////////////////////////
 
-
+  ACTION_IF debug_variable=3 BEGIN
+     PRINT "SFO setup done, starting core library install (general files): press a key to continue"
+     ACTION_READLN blook
+  END
   ACTION_BASH_FOR ~%scsroot%/%sfo_loc%/general~ ~lib_.*\.tpa~ BEGIN
          ACTION_IF "%BASH_FOR_EXT%" STRING_EQUAL_CASE TPA BEGIN
             INCLUDE ~%scsroot%/%sfo_loc%/general/%BASH_FOR_RES%.tpa~
@@ -237,6 +279,10 @@ VERBOSE
 // include file-specific function library
 ///////////////////////////////////////////////////
 
+  ACTION_IF debug_variable=3 BEGIN
+     PRINT "Continuing core library install (filetype-specific files): press a key to continue"
+     ACTION_READLN blook
+  END
   ACTION_BASH_FOR ~%scsroot%/%sfo_loc%/filetype~ ~lib_.*\.tpa~ BEGIN
          ACTION_IF "%BASH_FOR_EXT%" STRING_EQUAL_CASE TPA BEGIN
              INCLUDE ~%scsroot%/%sfo_loc%/filetype/%BASH_FOR_RES%.tpa~
@@ -278,7 +324,15 @@ END
 
 
   END
+  ACTION_IF debug_variable=3 BEGIN
+     PRINT "SFO installed: press a key to continue"
+     ACTION_READLN blook
+  END
+
+
 
 END
+
+
 
 

@@ -5,14 +5,12 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 DEFINE_ACTION_FUNCTION clone_pro  // beware-this only works for one projectile at a time
-    INT_VAR allow_missing=0
     STR_VAR
            pro=""
            edits=""
            editstring=""
-           location=""
-           locbase=""
-           locabs=""
+           allow_missing="no"
+           location="override"
     RET pro_num
     BEGIN
          LAUNCH_ACTION_FUNCTION clone_template
@@ -23,8 +21,6 @@ DEFINE_ACTION_FUNCTION clone_pro  // beware-this only works for one projectile a
                           editstring
                           allow_missing
                           location
-                          locbase
-                          locabs
          END
          LAF return_first_pair STR_VAR list= ~%pro%~ RET new=value END
          OUTER_SPRINT input ~ADD_PROJECTILE "%location%/%new%.pro"~
@@ -44,10 +40,8 @@ DEFINE_ACTION_FUNCTION edit_pro
            pro=""
            edits=""
            editstring=""
-           allow_missing=0
+           allow_missing="no"
            location=""
-           locbase=""
-           locabs=""
     BEGIN
          LAUNCH_ACTION_FUNCTION edit_template
                   STR_VAR file_list= ~%pro%~
@@ -56,8 +50,6 @@ DEFINE_ACTION_FUNCTION edit_pro
                           editstring
                           allow_missing
                           location
-                          locbase
-                          locabs
          END
 END
 
@@ -232,7 +224,6 @@ BEGIN
 END
 
 DEFINE_PATCH_FUNCTION PRO_is_area BEGIN END // a dummy function used for indicating to the make() program that this is an area-effect projectile
-LAF log_this STR_VAR file=auto_function_list.txt input= ~PRO_is_area - -~ END
 
 DEFINE_PATCH_FUNCTION PRO_target STR_VAR arguments="" BEGIN
    TO_LOWER arguments
@@ -253,7 +244,6 @@ DEFINE_PATCH_FUNCTION PRO_target STR_VAR arguments="" BEGIN
     LPF warning STR_VAR warning=~"%arguments% is an invalid argument for PRO_target~ END
     END
 END
-LAF log_this STR_VAR file=auto_function_list.txt input= ~PRO_target - -~ END
 
 DEFINE_PATCH_FUNCTION PRO_spark_color STR_VAR arguments="" BEGIN
     DEFINE_ASSOCIATIVE_ARRAY colmap BEGIN
@@ -277,7 +267,6 @@ DEFINE_PATCH_FUNCTION PRO_spark_color STR_VAR arguments="" BEGIN
          LPF warning STR_VAR warning=~"%arguments% is an invalid argument for PRO_spark_color~ END
     END
 END
-LAF log_this STR_VAR file=auto_function_list.txt input= ~PRO_spark_color - -~ END
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -297,7 +286,6 @@ DEFINE_PATCH_FUNCTION PRO_postbuild BEGIN END
 DEFINE_PATCH_FUNCTION PRO_add_aoe STR_VAR filename="" BEGIN
     INSERT_BYTES 0x200 0x100
 END
-LAF log_this STR_VAR file=auto_function_list.txt input= ~PRO_add_aoe - -~ END
 
 DEFINE_PATCH_FUNCTION PRO_build_area  BEGIN
     LPF PRO_build_before END

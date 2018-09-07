@@ -1,5 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////  2da read/write tools based on the 2da file being in a standard table configuration
+/////
+///// lib_table is independent of my other functions, with the exception of the read-external-table function
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 DEFINE_PATCH_FUNCTION get_table_column_coordinate
@@ -145,7 +147,7 @@ BEGIN
    END ELSE BEGIN
       SET value= "-1"
       PATCH_IF !dont_complain BEGIN
-          LPF warning STR_VAR warning="Tried to read entry name (%row%,%column%), apparent coordinates (%rownum%,%colnum%) from table (probably %SOURCE_FILE%) but it doesn't exist; returning -1" END
+          PATCH_PRINT "SFO warning: Tried to read entry name (%row%,%column%), apparent coordinates (%rownum%,%colnum%) from table (probably %SOURCE_FILE%) but it doesn't exist; returning -1"
       END
    END
 END
@@ -372,7 +374,7 @@ BEGIN
 
       END ELSE BEGIN
         ACTION_IF !dont_complain BEGIN
-         LAF warning STR_VAR warning="Tried to clone %clone_from% row of %file% to %clone_to%, but there is no such row, or else %clone_to% is already present" END
+         PRINT "Tried to clone %clone_from% row of %file% to %clone_to%, but there is no such row, or else %clone_to% is already present" 
         END
       END
 END
@@ -421,7 +423,7 @@ BEGIN
           PRETTY_PRINT_2DA
       END ELSE BEGIN
         ACTION_IF !dont_complain BEGIN
-         LAF warning STR_VAR warning="Tried to clone %clone_from% column of %file% to %clone_to%, but there is no such column, or else %clone_to% is already present" END
+         PRINT "Tried to clone %clone_from% column of %file% to %clone_to%, but there is no such column, or else %clone_to% is already present"
         END
       END
 END
