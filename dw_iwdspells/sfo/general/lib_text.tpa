@@ -194,7 +194,8 @@ BEGIN
    END
    OUTER_SPRINT tra_entries_here "%tra_entries%"
    PRINT "Loading translation %tra_in_loc%/%this_language%/%tra_in%"
-   WITH_TRA "%tra_in_loc%/%this_language%/%tra_in%" BEGIN
+
+     WITH_TRA "%tra_in_loc%/%this_language%/%tra_in%" BEGIN
       ACTION_IF !FILE_EXISTS "%tra_out_loc%/%this_language%/%tra_out%" BEGIN
         // MKDIR "%tra_out_loc%/%this_language%"
          COPY ".../stratagems-inline/blank" "%tra_out_loc%/%this_language%/%tra_out%"

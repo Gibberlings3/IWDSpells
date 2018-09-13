@@ -17,7 +17,7 @@ ALWAYS
    OUTER_SPRINT inifile "%scsroot%.ini"
    INCLUDE ~%scsroot%/%iwdspells_lib%/always.tph~
    OUTER_SET do_not_biff=0   // set to 1 and most resources (not animations) get put in the override
-   OUTER_SET get_all_languages=1  // set to 0 when testing the install, because it speeds things up a lot
+   OUTER_SET get_all_languages=0  // set to 0 when testing the install, because it speeds things up a lot
 END
 
 ////////////////////////////////////////////////////////////////////
@@ -96,6 +96,8 @@ REQUIRE_PREDICATE GAME_IS "bgee bg2ee eet" @6
 
 LAF include STR_VAR file=install_iwd_spell_resources.tpa location="%iwdspells_lib%" END
 LAF install_iwd_spell_resources
+           INT_VAR
+               make_scrolls=0
            STR_VAR
                spell_list=bardic_resrefs.txt
                lookup=iwd_strref.txt

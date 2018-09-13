@@ -392,7 +392,7 @@ DEFINE_ACTION_FUNCTION get_directory
         RET directory
 BEGIN
    OUTER_INNER_PATCH ~~ BEGIN
-      LPF get_directory STR_VAR location locbase locabs RET directory=directory END
+      LPF get_directory STR_VAR location locbase locabs RET directory END
    END
 END
 
@@ -444,10 +444,16 @@ DEFINE_ACTION_FUNCTION run
                locbase=""
                locabs=""
                version=""
+               tra=""
 BEGIN
        ACTION_IF !VARIABLE_IS_SET SFO_reserved_outer_run BEGIN
           OUTER_SET SFO_reserved_outer_run=1
           OUTER_SET make_labels=1
+          OUTER_SPRINT component_loc "%location%"
+          OUTER_SPRINT location ""
+          ACTION_IF "%tra%" STRING_EQUAL "" BEGIN
+             OUTER_SPRINT tra "%component_loc%"
+          END
        END ELSE BEGIN
           OUTER_SET make_labels=0
        END
@@ -470,7 +476,12 @@ BEGIN
            ACTION_IF make_labels BEGIN
               LAF make_label STR_VAR label="dw#%entry%" END
            END
-           LAF ~%entry%~ STR_VAR version= ~%version%~ END
+           ACTION_IF debug_variable=2 BEGIN
+              PRINT "about to run %entry%, with tra %scs_tra_loc%/english/%tra%.tra %scs_tra_loc%/%LANGUAGE%/%tra%.tra"
+           END
+           WITH_TRA "%scs_tra_loc%/english/%tra%.tra" "%scs_tra_loc%/%LANGUAGE%/%tra%.tra" BEGIN
+              LAF ~%entry%~ STR_VAR version= ~%version%~ END
+           END
        END
 END
 
@@ -997,6 +1008,30 @@ BEGIN
    END
 END
 
+DEFINE_ACTION_FUNCTION quicksort_numerical
+      STR_VAR list=""
+      RET list
+BEGIN
+   ACTION_IF "%list%" STRING_COMPARE "" BEGIN
+      LAF return_first_entry STR_VAR list RET entry list END
+      OUTER_SPRINT left ""
+      OUTER_SPRINT right ""
+      OUTER_WHILE "%list%" STRING_COMPARE "" BEGIN
+         LAF return_first_entry STR_VAR list RET cmp=entry list END
+         ACTION_IF cmp>entry BEGIN
+            LAF push STR_VAR head="%cmp%" tail="%right%" RET right=list END
+         END ELSE BEGIN
+            LAF push STR_VAR head="%cmp%" tail="%left%" RET left=list END
+         END
+      END
+      LAF quicksort_numerical STR_VAR list="%left%" RET left=list END
+      LAF quicksort_numerical STR_VAR list="%right%" RET right=list END
+      LAF push STR_VAR head="%entry%" tail="" RET list END
+      LAF join STR_VAR list1="%left%" list2="%list%" RET list END
+      LAF join STR_VAR list1="%list%" list2="%right%" RET list END
+   END
+END
+
 DEFINE_PATCH_FUNCTION quicksort
      STR_VAR list=""
      RET list
@@ -1020,4 +1055,37 @@ BEGIN
       PRINT "%string%"
       ACTION_READLN blook
    END
+END
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////      apply a function to all files of a certain type (for mod self-editing, not for
+////////////      live release)
+////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+DEFINE_ACTION_FUNCTION recurse_through_files
+    STR_VAR base_dir=""
+            allowed_ext=""
+            function=""
+            arguments=""
+BEGIN
+    ACTION_TO_UPPER allowed_ext
+    OUTER_WHILE "%allowed_ext%" STRING_COMPARE "" BEGIN
+       LAF return_first_entry STR_VAR list="%allowed_ext%" RET entry allowed_ext=list END
+       OUTER_SPRINT $ext_array("%entry%") ""
+    END
+    ACTION_BASH_FOR "%base_dir%" ".*" BEGIN
+       OUTER_SPRINT ext_here "%BASH_FOR_EXT%"
+       ACTION_TO_UPPER ext_here
+       ACTION_IF VARIABLE_IS_SET $ext_array("%ext_here%") BEGIN
+           LAF "%function%" STR_VAR file_res="%BASH_FOR_RES%" file_ext="%BASH_FOR_EXT%" file_dir="%base_dir%" arguments END
+       END
+    END
+    ACTION_CLEAR_ARRAY directories
+    GET_DIRECTORY_ARRAY directories "%base_dir%" "[a-z0-9-_]+"
+    ACTION_PHP_EACH directories AS int=>dir BEGIN
+       LAF recurse_through_files STR_VAR base_dir="%dir%" allowed_ext function arguments END
+    END
 END

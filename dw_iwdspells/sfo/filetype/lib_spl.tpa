@@ -753,7 +753,7 @@ BEGIN
                   WRITE_LONG 0x8 ~-1~
              END ELSE BEGIN
                   READ_STRREF 0x8 ~spellname~
-                  SPRINT ~addon~ @14300
+                  SPRINT ~addon~ "%SFO_reserved_previously_string%"
                   SPRINT ~newname~ ~%spellname%~^ ~%addon%~
                   SAY_EVALUATED 0x8 ~%newname%~
              END
@@ -1349,51 +1349,124 @@ END
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////              scroll maker    [not fully implemented; doesn't do icon]
+/////////////              scroll maker   
+/////////////
+/////////////              Needs to be supplied with a function that takes the spell resref as input and spits out a name, or else just with the name itself
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 DEFINE_ACTION_FUNCTION make_scroll_of_spell
-    INT_VAR lowest_number=1
-    STR_VAR spell=""
-            prefix="dw#scr"
-            scroll_loc="override"
+    INT_VAR price="-1"
+    STR_VAR resref=""
+            scrollname=""
+            name_func=""
+            spell_loc=""
+            price_func="standard_scroll_price"
     RET scrollname
 BEGIN
-    ACTION_IF !FILE_EXISTS_IN_GAME "%prefix%%lowest_number%.itm" BEGIN
-       OUTER_SPRINT scrollname "%prefix%%lowest_number%"
-       // find the spellname - don't assume we've read it in, this spell might well be new
-       OUTER_SET idscode=IDS_OF_SYMBOL (spell "%spell%")
-       ACTION_IF idscode>=0 BEGIN
-          LAF idscode_to_spell STR_VAR idscode RET resref END
-       END ELSE BEGIN // not in spell.ids, assume a name
-          OUTER_SPRINT resref "%spell%"
+       // find a name
+       ACTION_IF "%scrollname%" STRING_EQUAL "" BEGIN
+          LAF "%name_func%" STR_VAR arguments="%resref%" RET scrollname=value END
        END
-       // install scroll
-       COPY_EXISTING "scrl1d.itm" "%scroll_loc%/%scrollname%.itm" // this is Clairvoyance, which is in BG1, BG2, IWD
+       // find a price
+       ACTION_IF price<0 BEGIN
+          LAF "%price_func%" STR_VAR arguments="%resref%" RET price=value END
+       END
        // get some data from the spell
-       COPY_EXISTING "%resref%.spl" override
+       ACTION_IF "%spell_loc%" STRING_EQUAL "" BEGIN
+         COPY_EXISTING "%resref%.spl" override
            LPF SPL_read_description1_string RET desc=value END
            LPF SPL_read_name1_string RET name=value END
            READ_LONG 0x64 offset_base
            LPF SPL_read_ability_target STR_VAR offset_base RET target=value END
-       BUT_ONLY
-       // edit scroll
+           LPF SPL_read_ability_range STR_VAR offset_base RET range=value END
+           LPF SPL_read_spell_type_num RET type=value END
+         BUT_ONLY
+       END ELSE BEGIN
+         COPY "%spell_loc%/%resref%.spl" "%spell_loc%"
+           LPF SPL_read_description1_string RET desc=value END
+           LPF SPL_read_name1_string RET name=value END
+           READ_LONG 0x64 offset_base
+           LPF SPL_read_ability_target STR_VAR offset_base RET target=value END
+           LPF SPL_read_ability_range STR_VAR offset_base RET range=value END
+           LPF SPL_read_spell_type_num RET type=value END
+         BUT_ONLY
+       END
+       // get the template
+       ACTION_IF type=1 BEGIN
+          OUTER_SPRINT template "SCRL1D" // this is Clairvoyance, which is in BG1, BG2, IWD
+       END ELSE BEGIN
+          OUTER_SPRINT template "SCRL56" // this is Cure Serious Wounds, ditto
+       END
+
+       // install the scroll
        ACTION_CLEAR_ARRAY patch_data
        ACTION_DEFINE_ASSOCIATIVE_ARRAY patch_data BEGIN
           name2_string=>"%name%"
           description2_string=>"%desc%"
           patch_effect_inline=>"resource=>%resref%"
-          patch_effect_inline'=>"match=>opcode=146 ability_target=>%target%"
+          patch_ability_inline'1=>"ability_icon=>%resref%A"
+          icon=>"%resref%A"
+          price=>"%price%"
        END
-       LAF edit_item STR_VAR item="%scrollname%" location="%scroll_loc%" edits=patch_data END
        ACTION_IF target=4 BEGIN
-          LAF edit_item STR_VAR item="%scrollname%" location="%scroll_loc%" editstring="patch_effect_inline=>~match=>opcode=146 opcode=>148~" END
+          OUTER_SPRINT $patch_data("patch_effect_inline'") "match=>opcode=146 ability_target=>4 ability_range=>%range% opcode=>148"
+       END ELSE BEGIN
+          OUTER_SPRINT $patch_data("patch_effect_inline'") "match=>opcode=146 ability_range=>%range% ability_target=>%target%"
        END
-    END ELSE BEGIN
-       OUTER_SET lowest_number +=1
-       LAF make_scroll_of_spell INT_VAR lowest_number STR_VAR spell prefix RET scrollname END
-    END
+       LAF clone_item STR_VAR item="%template%=>%scrollname%" edits=patch_data END
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  default function for scroll pricing
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+DEFINE_ACTION_FUNCTION standard_scroll_price 
+         STR_VAR arguments=""
+         RET value
+BEGIN
+       OUTER_INNER_PATCH "%arguments%" BEGIN
+          READ_ASCII 0x2 type (2)
+          READ_ASCII 0x4 level (1)
+       END
+       ACTION_IF "%type%" STRING_EQUAL PR BEGIN  // priest pricing
+             OUTER_SET value = level * 100
+       END ELSE BEGIN // wizard pricing
+             ACTION_MATCH "%level%" WITH
+                1 BEGIN
+                   OUTER_SET value=100
+                END
+                2 BEGIN
+                   OUTER_SET value=200
+                END
+                3 BEGIN
+                   OUTER_SET value=300
+                END
+                4 BEGIN
+                   OUTER_SET value=500
+                END
+                5 BEGIN
+                   OUTER_SET value=1000
+                END
+                6 BEGIN 
+                   OUTER_SET value=2000
+                END
+                7 BEGIN
+                   OUTER_SET value=3000
+                END
+                8 BEGIN 
+                   OUTER_SET value=5000
+                END
+                DEFAULT
+                   OUTER_SET value=10000
+                END
+       END
+
+
+
+
+
 END
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

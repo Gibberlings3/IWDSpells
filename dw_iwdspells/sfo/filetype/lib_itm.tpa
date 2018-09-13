@@ -599,6 +599,7 @@ OUTER_SPRINT $SFO_do_not_parse_arguments("ITM_set_description") ""
 DEFINE_PATCH_FUNCTION ITM_set_unidentified_description
    STR_VAR arguments=""
 BEGIN
+   SAY 0x50 (AT "%arguments%")
    LPF patch_text_entry STR_VAR function=set_string loc=0x50 arguments END
 END
 OUTER_SPRINT $SFO_do_not_parse_arguments("ITM_set_unidentified_description") ""

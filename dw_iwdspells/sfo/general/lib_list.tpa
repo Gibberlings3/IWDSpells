@@ -209,10 +209,11 @@ DEFINE_PATCH_FUNCTION read_in_list
       STR_VAR file=""
              location=""
              locbase=""
+             locabs=""
       RET list
 BEGIN
    INNER_ACTION BEGIN
-      LAF read_in_list INT_VAR col STR_VAR file location locbase RET list=list END
+      LAF read_in_list INT_VAR col STR_VAR file location locbase locabs RET list=list END
    END
 END
 

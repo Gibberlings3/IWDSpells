@@ -102,12 +102,7 @@ DEFINE_ACTION_FUNCTION get_iwd_spell_resources INT_VAR CMW_string=0 STR_VAR file
            LAF get_spellcode STR_VAR input="%spell%" RET resref=value END
             OUTER_SPRINT SFO_reserved_spell_here "%resref%"
             LAF log_this STR_VAR locabs="%resource_loc%"  file="%resref_list%" input="%spellname% %resref%" END
-            ACTION_IF VARIABLE_IS_SET "%spellname%_SCROLL" BEGIN
-                  COPY_EXISTING "%%spellname%_SCROLL%.itm" "%resource_loc%/%spellname%"
-                      LPF apply_to_strrefs STR_VAR arguments=log_strref filename=EVAL "%%spellname%_SCROLL%" file_ext=itm END
-                  OUTER_SPRINT to_check EVAL "%%spellname%_SCROLL%.itm"
-            END ELSE BEGIN
-               ACTION_IF VARIABLE_IS_SET $iterate_override("%spellname%") BEGIN
+            ACTION_IF VARIABLE_IS_SET $iterate_override("%spellname%") BEGIN
                   OUTER_SPRINT file $iterate_override("%spellname%")
                   OUTER_INNER_PATCH_SAVE file_resref "%file%" BEGIN
                      READ_ASCII (BUFFER_LENGTH - 3) ext (3)
@@ -116,11 +111,13 @@ DEFINE_ACTION_FUNCTION get_iwd_spell_resources INT_VAR CMW_string=0 STR_VAR file
                   COPY_EXISTING "%file%" "%resource_loc%/%spellname%"
                       LPF apply_to_strrefs STR_VAR arguments=log_strref filename="%file_resref%" file_ext="%ext%" END
                   OUTER_SPRINT to_check "%file%"
-               END ELSE BEGIN
+            END ELSE BEGIN
                   COPY_EXISTING "%resref%.spl" "%resource_loc%/%spellname%"
                       LPF apply_to_strrefs STR_VAR arguments=log_strref filename="%resref%" file_ext="spl" END
                   OUTER_SPRINT to_check "%resref%.spl"
-               END
+            END
+            ACTION_IF FILE_EXISTS_IN_GAME "%resref%A.BAM" BEGIN
+                  COPY_EXISTING "%resref%A.BAM" "%resource_loc%/%spellname%"
             END
             LAF iter_resource INT_VAR skip_payload_on_ignore=1 STR_VAR to_check func=iterfunc_get_resources ignore_func=ignore_wrapper immunity_func=iterfunc_log_immunities END
 
@@ -132,7 +129,6 @@ DEFINE_ACTION_FUNCTION get_iwd_spell_resources INT_VAR CMW_string=0 STR_VAR file
       // get entries for SMTABLES
 
       ACTION_IF FILE_EXISTS "%workspace%/smtable_entries.2da" BEGIN
-         PRINT "blook! %smtables_list%"
          COPY "%workspace%/smtable_entries.2da" "%resource_loc%/%smtables_list%"
       END
 
