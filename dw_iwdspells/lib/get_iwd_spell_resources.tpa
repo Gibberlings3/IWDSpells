@@ -87,7 +87,7 @@ DEFINE_ACTION_FUNCTION get_iwd_spell_resources INT_VAR CMW_string=0 STR_VAR file
       // quick ad hoc recording of strings needed
       
       ACTION_IF CMW_string BEGIN
-         LAF log_this STR_VAR file=strings_used.txt input="119397" END // Cure Moderate Wounds temple string
+         LAF log_this STR_VAR file=strings_used.txt input="119397" END // Cure Moderate Wounds temple string - includes the +100000
       END
 
       // main install
@@ -368,4 +368,24 @@ BEGIN
       END
    END
   END
+END
+
+// icon collector 
+
+DEFINE_ACTION_FUNCTION get_iwd_icons BEGIN
+        MKDIR "%resource_loc%/icon"
+        COPY_EXISTING "statdesc.2da" "%resource_loc%/icon"
+                COUNT_2DA_ROWS 3 rowcount
+                FOR (i=0;i<rowcount;i+=1) BEGIN
+                   READ_2DA_ENTRY i 0 3 number
+                   PATCH_IF (number >= 164 && number <=187) BEGIN
+                      READ_2DA_ENTRY i 1 3 strref
+                      SET strref += 100000
+                      LPF log_this STR_VAR file="strings_used.txt" input="%strref%" END
+                   END
+                END
+     //   BUT_ONLY  // always copy!
+        ACTION_FOR_EACH file IN "states.bam" "states2.bam"  BEGIN
+           COPY_EXISTING "%file%" "%resource_loc%/icon"
+        END
 END

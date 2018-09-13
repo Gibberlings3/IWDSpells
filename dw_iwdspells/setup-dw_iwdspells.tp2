@@ -38,11 +38,11 @@ ENGLISH
 ////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-/*
+
 BEGIN "Test" DESIGNATED 0
 
 LAF run STR_VAR file=test location=test END
-*/
+
 
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
@@ -166,6 +166,10 @@ LAF include STR_VAR file=collect_animations.tpa location="%iwdspells_lib%" END
 ACTION_BASH_FOR "%scsroot%/%iwdspells_data%/anim" ".*\.ini" BEGIN
    LAF collect_iwd_animations STR_VAR ini="%BASH_FOR_FILESPEC%" anim_loc="%resource_loc%/anim/bam" wav_loc="%resource_loc%/anim/wav" END
 END
+
+// icon strings and BAMs
+
+LAF get_iwd_icons END 
 
 // copy-only spell BAMs
 

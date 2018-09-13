@@ -7,7 +7,7 @@ DEFINE_ACTION_FUNCTION install_iwd_spell_resources
                     proj_list="" 
                     smtables_list="" 
                     tra="" 
-                    lookup="" 
+                    lookup=""
                     location=""
                     locbase="" 
                     locabs="" 
@@ -298,13 +298,17 @@ BEGIN
         LAF include STR_VAR file=make_bams_green.tpa location="%iwdspells_lib%" END
         LAF make_bams_green STR_VAR file="%green_bams%" install_loc END
     END
+    
+    // icons (will only happen once)
+    
+    LAF install_iwd_icons END
 
     // make BIFF
 
     ACTION_IF !do_not_biff BEGIN
        MAKE_BIFF "%biff%" BEGIN "%install_loc%" ".*\.*" END
     END
-    
+
     // sort out remaps (needs to happen AFTER biff so files are in-game - this is the price of having separate divine, arcane components)
     
     LAF process_table STR_VAR function=remap_spell_resrefs_helper table="spells_used.2da" locabs="%resource_loc%" END
@@ -538,5 +542,42 @@ BEGIN
        REPLACE_TEXTUALLY SPWI CDIA
        REPLACE_TEXTUALLY SPPR CDID
     END
+
+END
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+///        Install icons
+///
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+DEFINE_ACTION_FUNCTION install_iwd_icons BEGIN
+
+   LAF check_label STR_VAR label="dw#iwd_icons" RET value END
+   ACTION_IF !value BEGIN
+      LAF make_label STR_VAR label="dw#iwd_icons" END
+      COPY "%resource_loc%/icon/states.bam" override
+      COPY "%resource_loc%/icon/states2.bam" override
+   END
+   COPY "%resource_loc%/icon/statdesc.2da" "%workspace%"
+        COUNT_2DA_ROWS 3 rowcount
+        FOR (i=0;i<rowcount;i+=1) BEGIN
+           READ_2DA_ENTRY i 0 3 number
+           PATCH_IF (number >=164 && number <=187) BEGIN
+              READ_2DA_ENTRY i 1 3 strref_iwd
+              SET $icon_strref("%number%") = $strref_map("%strref_iwd%")
+           END
+        END
+   BUT_ONLY
+   COPY_EXISTING "statdesc.2da" override
+        COUNT_2DA_ROWS 3 rowcount
+        FOR (i=0;i<rowcount;i+=1) BEGIN
+           READ_2DA_ENTRY i 0 3 number
+           PATCH_IF (number >=164 && number <=187) BEGIN
+              SET to_add=$icon_strref("%number%")
+              SET_2DA_ENTRY i 1 3 to_add
+           END
+        END
 
 END
