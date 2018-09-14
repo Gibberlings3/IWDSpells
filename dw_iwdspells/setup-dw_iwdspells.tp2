@@ -38,11 +38,11 @@ ENGLISH
 ////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-
+/*
 BEGIN "Test" DESIGNATED 0
 
 LAF run STR_VAR file=test location=test END
-
+*/
 
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
@@ -53,6 +53,7 @@ LAF run STR_VAR file=test location=test END
 BEGIN @5 DESIGNATED 1000 // install arcane resources
 REQUIRE_PREDICATE GAME_IS "bgee bg2ee eet" @6
 
+LAF make_label STR_VAR label=dw#iwd_arcane END
 LAF include STR_VAR file=install_iwd_spell_resources.tpa location="%iwdspells_lib%" END
 LAF install_iwd_spell_resources
            STR_VAR
@@ -74,6 +75,7 @@ BEGIN @7 DESIGNATED 2000 // install divine resources
 
 REQUIRE_PREDICATE GAME_IS "bgee bg2ee eet" @6
 
+LAF make_label STR_VAR label=dw#iwd_divine END
 LAF include STR_VAR file=install_iwd_spell_resources.tpa location="%iwdspells_lib%" END
 LAF install_iwd_spell_resources
            STR_VAR
@@ -94,6 +96,7 @@ BEGIN @8 DESIGNATED 3000 // install bardsongs
 
 REQUIRE_PREDICATE GAME_IS "bgee bg2ee eet" @6
 
+LAF make_label STR_VAR label=dw#iwd_bardic END
 LAF include STR_VAR file=install_iwd_spell_resources.tpa location="%iwdspells_lib%" END
 LAF install_iwd_spell_resources
            INT_VAR
