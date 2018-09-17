@@ -12,9 +12,12 @@ DEFINE_ACTION_FUNCTION divine_spells_postproduction STR_VAR tra="" BEGIN
           LAF summoned_monsters_divine END
           LAF patch_cures_into_stores END
           LAF pc_spells END
+          LAF clearair_divine END
 
 
 END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
 DEFINE_ACTION_FUNCTION no_chant_spell_failure BEGIN
    // remove spell-failure effect from CHANT
@@ -27,11 +30,15 @@ DEFINE_ACTION_FUNCTION no_chant_spell_failure BEGIN
    
 END
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
 DEFINE_ACTION_FUNCTION remap_symbol_pain_pro BEGIN
 
    LAF edit_spell STR_VAR spell=CLERIC_SYMBOL_OF_PAIN editstring="patch_ability_inline=>~projectile=>225~" END
 
 END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
 DEFINE_ACTION_FUNCTION patch_cures_into_stores BEGIN
 
@@ -64,11 +71,9 @@ DEFINE_ACTION_FUNCTION patch_cures_into_stores BEGIN
       cure_price=>"2*cure_price"
    END
    LAF edit_store STR_VAR store="%has_light%" editstring="clone_cure=>patch_data" END
-
-
-
 END
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
 // update joinable characters' divine spellbooks
 
 DEFINE_ACTION_FUNCTION pc_spells BEGIN
@@ -84,5 +89,21 @@ DEFINE_ACTION_FUNCTION pc_spells BEGIN
              LPF CRE_add_all_priest_spells END
           END
     BUT_ONLY
+
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// update CLEARAIR.2DA to include Cloud of Pestilence
+
+DEFINE_ACTION_FUNCTION clearair_divine BEGIN
+
+   COPY_EXISTING "%CLERIC_CLOUD_OF_PESTILENCE%.spl" "%override%"
+        READ_LONG 0x64 ab_off
+        READ_SHORT (0x26+ab_off) proj
+   BUT_ONLY
+   OUTER_SET proj -= 1
+   APPEND "clearair.2da" "cloud_of_pest %proj%"
+   COPY_EXISTING "clearair.2da" override PRETTY_PRINT_2DA
+
 
 END
