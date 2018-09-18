@@ -42,6 +42,7 @@ ENGLISH
 BEGIN "Test" DESIGNATED 0
 
 LAF run STR_VAR file=test location=test END
+
 */
 
 ////////////////////////////////////////////////////////////////////

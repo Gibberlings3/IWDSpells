@@ -93,6 +93,7 @@ Fix: We split the difference, installing the IWD version of Chant over the BG2 o
 Fix: systematic restructuring of the summons to get something more thematically unified: MS spells pretty much exclusively summon humanoids. 
 
 The Boneguard, previously summonable by MS VII, gets moved into its own Necromancy spell, "Create Boneguard". (Functionally it's MS VII, other than the school change and the fact that it's guaranteed to summon boneguards.) You can disable this in the ini file if it's a bridge too far.
+[As of 9/17/2018 this is deprecated; I can do it in SCS instead.]
 
 6) Issue: IWD restricts its Cause Wounds spells to evil casters, but the BG2 versions of Cause Critical/Serious Wounds aren't so restricted, so there's an inconsistency.
 

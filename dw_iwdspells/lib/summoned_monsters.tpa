@@ -7,78 +7,10 @@ DEFINE_ACTION_FUNCTION summoned_monsters_arcane BEGIN
 
 /////////////////////////////////////////////////////
 //// Create Boneguard
+////
+////  DEPRECATED for now, it's probably a bridge too
+////  far and I'll do it in SCS
 ///////////////////////////////////////////////////
-
-  LAF check_ini STR_VAR ini=create_boneguard RET value END
-  ACTION_IF value BEGIN
-
-    CLEAR_IDS_MAP
-    LAF get_spellcode STR_VAR input=WIZARD_MONSTER_SUMMONING_7 RET spell=value END
-    COPY_EXISTING "%spell%.spl" "%workspace%/boneguard.spl"
-    MAKE_PATCH
-       say_name=>1
-       say_description=>2
-       enforce_school=>necromancy
-       patch_effect_inline=>"opcode=>177 resource=>dw#spbgd parameter2=>2 probability1=>50 dicenum=>0 dicesize=>0"
-       clone_effect_inline=>"number_to_add=>2 probability1=>100 probability2=>51"
-    END
-    LAF install_spell STR_VAR idsname=WIZARD_CREATE_BONEGUARD spell="boneguard" locabs="%workspace%" edits=patch_data RET WIZARD_CREATE_BONEGUARD=newname END
-    LAF collect_spell_icons STR_VAR location=bam locbase=hla resref=tg#bone spell=WIZARD_CREATE_BONEGUARD END
-    
-    // at least pro tem, steal Protection from Undead scroll icon
-
-    COPY_EXISTING iscrl09.bam "override/%WIZARD_CREATE_BONEGUARD%A.bam"
-
-    // sort out scroll
-
-      LAF find_scroll_slot RET scroll_slot END
-      OUTER_SPRINT scroll_new "SCRL%scroll_slot%"
-
-    MAKE_PATCH
-       say_both_names=>1
-       say_both_descriptions=>2
-       patch_effect_inline=>"resource=>%WIZARD_CREATE_BONEGUARD%"
-       patch_ability_inline=>"ability_icon=>%WIZARD_CREATE_BONEGUARD%A"
-       icon=>"%WIZARD_CREATE_BONEGUARD%A"
-       unusable_invoker=>0
-       unusable_diviner=>0
-       unusable_illusionist=>1
-    END
-    LAF clone_item STR_VAR item="%WIZARD_MONSTER_SUMMONING_7_SCROLL%=>%scroll_new%" edits=patch_data END
-
-
-   OUTER_SPRINT shadow "%WIZARD_WAIL_OF_THE_BANSHEE_SCROLL%"
-   MAKE_PATCH
-      clone_item_inline=>"match=>~item_resource=%shadow%~ item_resource=>%scroll_new%"
-   END
-   COPY_EXISTING_REGEXP GLOB ".*\.sto" override
-           PATCH_IF INDEX_BUFFER ("%shadow%")>=0 BEGIN
-              LPF apply_patches STR_VAR edits=patch_data file_ext=STO END
-           END
-   BUT_ONLY
-
-    // make effect
-
-    MAKE_PATCH
-       duration=>2400
-       timing=>1
-       resource=>ms7bgrd
-       resource2=>spraised
-       target=>1
-       opcode=>67
-    END
-    LAF make_effect STR_VAR effect=dw#spbgd edits=patch_data END
-
-    // tweak monster file
-
-    MAKE_PATCH
-      delete_effect=>"opcode=233"
-      swap_script=>"gnsummm=>bdsum00"
-      xp_value=>0
-    END
-    LAF edit_creature STR_VAR creature=ms7bgrd edits=patch_data END
-  
-  END  
 
 /////////////////////////////////////////////////////
 //// MS7

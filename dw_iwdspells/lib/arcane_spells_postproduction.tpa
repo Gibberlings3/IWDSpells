@@ -18,6 +18,8 @@ END
 
 DEFINE_ACTION_FUNCTION force_blade BEGIN
 
+
+    // rename the spell
     COPY_EXISTING "%WIZARD_MORDENKAINENS_SWORD_IWD%.SPL" override
         READ_STRREF NAME1 old_name
         SPRINT new_name @10
@@ -29,10 +31,19 @@ DEFINE_ACTION_FUNCTION force_blade BEGIN
         SAY 0x50 "%new_desc%"
     BUT_ONLY
 
+    // rename the scroll
     COPY_EXISTING "%WIZARD_MORDENKAINENS_SWORD_IWD_SCROLL%.ITM" override
         SAY NAME2 "%new_name%"
         SAY DESC "%new_desc%"
     BUT_ONLY
+    
+    // reverse the icons, since the green one (copied over with SWORD_IWD) ought to be associated with the summons effect
+    
+    ACTION_FOR_EACH letter IN a b c BEGIN
+         COPY_EXISTING "%WIZARD_MORDENKAINENS_SWORD_IWD%%letter%.bam" "%workspace%"
+         COPY_EXISTING "%WIZARD_MORDENKAINENS_SWORD%%letter%.bam" "override/%WIZARD_MORDENKAINENS_SWORD_IWD%%letter%.bam"
+         COPY "%workspace%/%WIZARD_MORDENKAINENS_SWORD_IWD%%letter%.bam" "override/%WIZARD_MORDENKAINENS_SWORD%%letter%.bam"
+    END
 
 END
 
