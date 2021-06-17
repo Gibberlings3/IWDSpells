@@ -1,3 +1,5 @@
+// this is a copy of the tra file from Sword Coast Stratagems
+
 @1="Create Boneguard"
 @2="Create Boneguard
 (Necromancy)
@@ -58,3 +60,12 @@ Upon casting a Conjure Water Elemental spell, the caster opens a special gate to
 @8="Elder Water Elemental"
 @9="Lesser Water Elemental"
 @10="Mordenkainen's Force Blade"
+@11="Orc Warrior"
+@12="Orc Archer"
+@13="Hobgoblin Warrior"
+@14="Hobgoblin Archer"
+@15="Ettin"
+@16="Yuan-Ti"
+@17="Giant Troll"
+@18="and so on, to a maximum of seven missiles at 25th level" // TO TRANSLATORS: must be verbatim from IWD 'Mordenkainen's Force Missiles' description
+@19="to a maximum of five missiles at 19th level"

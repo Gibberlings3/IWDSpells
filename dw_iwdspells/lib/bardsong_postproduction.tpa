@@ -1,4 +1,5 @@
-DEFINE_ACTION_FUNCTION bardsong_postproduction BEGIN
+DEFINE_ACTION_FUNCTION bardsong_postproduction STR_VAR tra="" BEGIN
+
 
    // change the default "FJBARD" to point at the Ballad of Three Heroes
    
@@ -17,5 +18,60 @@ DEFINE_ACTION_FUNCTION bardsong_postproduction BEGIN
    END
    LAF edit_kit STR_VAR kit=bard edits=patch_data END
 
+	WITH_TRA "%tra%" BEGIN
+
+	// update regular bard description
+	LAF read_table_entry STR_VAR file=clastext.2da row=bard column=descstr RET desc_strref=value END
+	ACTION_GET_STRREF desc_strref desc
+	ACTION_GET_STRREF desc_strref desc
+	OUTER_PATCH_SAVE desc "%desc%" BEGIN
+		SPRINT old @1
+		REPLACE_TEXTUALLY "\(.*\)%old%.*" "\1DW_PLACEHOLDER"
+		PATCH_FOR_EACH tra_ref IN 2 3 4 BEGIN
+			SPRINT old (AT tra_ref)
+			REPLACE_TEXTUALLY "[%WNL%%LNL%%MNL%].*%old%" ""
+		END
+		
+		PATCH_FOR_EACH tra_ref IN 16 15 14 13 12 11 10 BEGIN
+			SPRINT new (AT tra_ref)
+			REPLACE_TEXTUALLY "\(.*\)DW_PLACEHOLDER.*\([%WNL%%LNL%%MNL%]\)" "\1DW_PLACEHOLDER\2\1%new%\2"
+		END
+		REPLACE_TEXTUALLY "\(.*\)DW_PLACEHOLDER.*\([%WNL%%LNL%%MNL%]\)" ""
+		
+	END	
+	STRING_SET_EVALUATE desc_strref "%desc%"
+	
+		// update bard kit descriptions
+	
+		COPY_EXISTING "clastext.2da" override
+			COUNT_2DA_COLS colcount
+			COUNT_2DA_ROWS colcount rowcount
+			FOR (row=0;row<rowcount;++row) BEGIN
+				READ_2DA_ENTRY row 1 colcount class_id
+				PATCH_IF class_id=5 BEGIN
+					READ_2DA_ENTRY row 2 colcount kit_id
+					PATCH_IF "%kit_id%" STRING_COMPARE 16384 BEGIN
+						READ_2DA_ENTRY row 4 colcount desc_strref
+						GET_STRREF desc_strref desc
+						SPRINT discard @21
+						SPRINT disadvantages @22
+						SPRINT newline @20
+						INNER_PATCH_SAVE desc "%desc%" BEGIN
+							REPLACE_TEXTUALLY "%disadvantages%\(.*[%WNL%%MNL%%LNL%][^a-zA-Z0-9]*\)\([a-zA-Z0-9].*\)" "%disadvantages%\1%newline%\1\2"
+							REPLACE_TEXTUALLY "[%WNL%%MNL%%LNL%][^a-zA-z]*%discard%.*" ""
+						END
+						INNER_ACTION BEGIN
+							STRING_SET_EVALUATE desc_strref "%desc%"
+						END
+					
+					END
+				END
+			END
+		
+		BUT_ONLY
+	
+	
+	
+	END // end of WITH_TRA
 
 END

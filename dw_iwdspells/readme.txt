@@ -6,7 +6,7 @@ Overview
 
 This is an automated converter to pull spells from IWDEE to BG(2)EE, using leftover pieces of code from the converter that underlies IWDEE (and that descends from the old IWD-in-BG2 project). It works by starting with a spell file, and then iteratively going through every file that spell needs, every file those files need, and so forth. En route, it collects every relevant string from every language present in BG2. For wizard spells, scrolls are added, shadowing existing game scrolls (for instance, SHOUT scrolls occur everywhere CONE_OF_COLD scrolls do now).
 
-Spells are added via ADD_SPELL; scrolls are slotted into empty spaces in the SCRL[0-9AZ][0-9A-Z] namespace. A few other files are renamed to avoid namespace conflicts; otherwise the IWD names are preserved. Files that are already present unmodified (or nearly so) don't get copied over.
+Spells are added via ADD_SPELL; scrolls are slotted into empty spaces in the SCRL[0-9AZ][0-9A-Z] namespace. [edit: we changed over to using Cam's CDIA/CDID convention.] A few other files are renamed to avoid namespace conflicts; otherwise the IWD names are preserved. Files that are already present unmodified (or nearly so) don't get copied over.
 
 It works as a standalone mod, but might be more useful included into something else. The virtues of automated conversion are (i) less change of errors creeping in; (ii) we can immediately and simply update to reflect any changes in IWDEE.
 

@@ -1,0 +1,6 @@
+DEFINE_ACTION_FUNCTION test BEGIN
+
+LAF include STR_VAR file=make_bams_green.tpa location="%iwdspells_lib%" END
+LAF make_bams_green STR_VAR file="temporary_boneguard" install_loc END
+END
+

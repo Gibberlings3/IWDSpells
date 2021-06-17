@@ -1,13 +1,13 @@
-DEFINE_ACTION_FUNCTION get_iwd_spell_resources INT_VAR CMW_string=0 STR_VAR file="" resref_list="" smtables_list="" proj_list="" location="" locbase="" locabs=""  BEGIN
+DEFINE_ACTION_FUNCTION get_iwd_spell_resources  STR_VAR file="" resref_list="" smtables_list="" proj_list="" location="" locbase="" locabs=""  BEGIN
 
 
       // generate list of IWD resources not in BG2
       
       LAF spell_comparison END
-      
+
       // read in that list
 
-      COPY "%workspace%/spells_not_in_bg2.txt" "%workspace%"
+      COPY "%data_loc%/spells_not_in_bg2.txt" "%workspace%"
           READ_2DA_ENTRIES_NOW not_in_bg2_arr 2
           FOR (i=0;i<not_in_bg2_arr;i+=1) BEGIN
              READ_2DA_ENTRY_FORMER not_in_bg2_arr i 0 key
@@ -56,9 +56,12 @@ DEFINE_ACTION_FUNCTION get_iwd_spell_resources INT_VAR CMW_string=0 STR_VAR file
       END
 
      // Multiple Force Missile projectile turns up multiple times on the list; need to be in order, I think
+     ACTION_IF "%proj_list%" STRING_EQUAL_CASE "arcane_proj.txt" BEGIN
+      LAF log_this STR_VAR file="%proj_list%" locabs="%resource_loc%" input="mfmiss 436" repeat=no END
       OUTER_FOR (i=437;i<=446;i+=1) BEGIN
           LAF log_this STR_VAR file="%proj_list%" locabs="%resource_loc%" input="mfmiss2 %i%" repeat=no END
       END
+     END
       
       // Read in list of iterate overrides
       
@@ -70,11 +73,10 @@ DEFINE_ACTION_FUNCTION get_iwd_spell_resources INT_VAR CMW_string=0 STR_VAR file
 
       // make files we need
 
-      ACTION_IF !FILE_EXISTS "%workspace%/strings_used.txt" BEGIN
-         COPY ".../stratagems-inline/blank" "%workspace%/strings_used.txt"
+      ACTION_IF !FILE_EXISTS "%data_loc%/strings_used.txt" BEGIN
+         COPY ".../stratagems-inline/blank" "%data_loc%/strings_used.txt"
       END
       COPY ".../stratagems-inline/blank" "%resource_loc%/%resref_list%"
-      COPY ".../stratagems-inline/blank" "%resource_loc%/%proj_list%"
       COPY ".../stratagems-inline/blank" "%resource_loc%/%smtables_list%"
 
       <<<<<<<< .../stratagems-inline/spells_used.2da
@@ -86,10 +88,10 @@ DEFINE_ACTION_FUNCTION get_iwd_spell_resources INT_VAR CMW_string=0 STR_VAR file
 
       // quick ad hoc recording of strings needed
       
-      ACTION_IF CMW_string BEGIN
-         LAF log_this STR_VAR file=strings_used.txt input="119397" END // Cure Moderate Wounds temple string - includes the +100000
+      LAF log_this STR_VAR file=strings_used.txt input="119397" END // Cure Moderate Wounds temple string - includes the +100000
+      OUTER_FOR (input=121648;input<=121654;input+=1) BEGIN
+              LAF log_this STR_VAR file=strings_used.txt input END // Seven Eyes strings - includes the +100000
       END
-
       // main install
 
       LAF read_in_list STR_VAR file location locbase locabs RET list END
@@ -126,16 +128,23 @@ DEFINE_ACTION_FUNCTION get_iwd_spell_resources INT_VAR CMW_string=0 STR_VAR file
       PRINT "Finished main resource collection, doing residual tasks"
       // manual edits go here
 
+      // get animations/sounds for beetles
+
+      MKDIR "%resource_loc%/beetle/bam"
+      COPY_EXISTING_REGEXP "mbbm.*\.bam" "%resource_loc%/beetle/bam"
+      MKDIR "%resource_loc%/beetle/wav"
+      COPY_EXISTING_REGEXP "bomba.*\.wav" "%resource_loc%/beetle/wav"
+
       // get entries for SMTABLES
 
-      ACTION_IF FILE_EXISTS "%workspace%/smtable_entries.2da" BEGIN
-         COPY "%workspace%/smtable_entries.2da" "%resource_loc%/%smtables_list%"
+      ACTION_IF FILE_EXISTS "%data_loc%/smtable_entries.2da" BEGIN
+         COPY "%data_loc%/smtable_entries.2da" "%resource_loc%/%smtables_list%"
       END
 
 
 END
 
-DEFINE_PATCH_FUNCTION log_strref STR_VAR offset=0 filename="" file_ext="" BEGIN
+DEFINE_PATCH_FUNCTION log_strref INT_VAR offset=0 STR_VAR filename="" file_ext="" BEGIN
         READ_LONG offset strref
         SET strref=strref+100000 // slightly hacky way to ensure no strref is a substring of another
         LPF log_this STR_VAR file="strings_used.txt" input="%strref%" repeat="no" END
@@ -165,7 +174,8 @@ BEGIN
 END
 
 DEFINE_ACTION_FUNCTION iterfunc_get_resources  // slight violation of encapsulation: we assume access to "%spellname%"
-                   STR_VAR resref=""
+                   STR_VAR output="" // dummy, not used
+						   resref=""
                            ext=""
                            parent=""
                    RET output
@@ -175,8 +185,14 @@ DEFINE_ACTION_FUNCTION iterfunc_get_resources  // slight violation of encapsulat
                       ACTION_MATCH "%ext%" WITH
                       pro BEGIN
                           // log this projectile
+                        ACTION_MATCH "%resref%" WITH
+                        mfmiss mfmiss2 
+                           BEGIN
+                           END
+                        DEFAULT
                           OUTER_SET pronum=IDS_OF_SYMBOL (projectl "%resref%")
-                          LAF log_this STR_VAR file="%proj_list%" locabs="%resource_loc%" input="%resref% %pronum%" END
+                          LAF log_this STR_VAR file="%proj_list%" locabs="%resource_loc%" input="%resref% %pronum%" repeat=no END
+                        END
                       END
                       wav BEGIN
                          OUTER_PATCH "%resref%" BEGIN
@@ -217,6 +233,7 @@ DEFINE_ACTION_FUNCTION iterfunc_get_resources  // slight violation of encapsulat
                       END
 END
 
+//// this function must not use external libraries
 
 DEFINE_ACTION_FUNCTION process_tra_entries
      INT_VAR make_lookup=1
@@ -232,10 +249,14 @@ BEGIN
            COPY ".../stratagems-inline/blank" "%lookuploc%"
         END
       END
-      LAF read_in_list STR_VAR file=strings_used.txt locabs="%workspace%" RET list END
+	  ACTION_CLEAR_ARRAY strings_used
+	  COPY "%data_loc%/strings_used.txt" "%workspace%"
+		REPLACE_EVALUATE "\([0-9]+\)" BEGIN
+			SET $strings_used("%MATCH1%")=1
+		END
+		""
       OUTER_SET tra_ind=1
-      OUTER_WHILE "%list%" STRING_COMPARE "" BEGIN
-         LAF return_first_entry STR_VAR list RET strref=entry list END
+	  ACTION_PHP_EACH strings_used AS strref=>discard BEGIN
          OUTER_SET strref=strref - 100000 // reverse the transformation in log_strref
          ACTION_IF !VARIABLE_IS_SET $processed("%strref%") BEGIN
             ACTION_GET_STRREF strref temp
@@ -266,7 +287,8 @@ BEGIN
      ACTION_IF !("%language%" STRING_EQUAL_CASE "%EE_LANGUAGE%") BEGIN // do your current language last, so WEIDU doesn't save your change
        MKDIR "%resource_loc%/tra/%language%"
        COPY ".../stratagems-inline/blank" "%resource_loc%/tra/%language%/iwdspells.tra"
-       AT_NOW "setup-%scsroot% %scsroot%\%iwdspells_lib%\process_strref.tp2 --no-auto-tp2 --use-lang %language% --force-install 1000 --yes"
+	   COPY "%MOD_FOLDER%/%iwdspells_lib%/process_strref.tp2" "%workspace%" EVALUATE_BUFFER
+       AT_NOW "setup-%scsroot% %workspace%\process_strref.tp2 --no-auto-tp2 --use-lang %language% --force-install 1000 --yes"
      END
    END
    AT_NOW "setup-%scsroot% --no-auto-tp2 --use-lang %EE_LANGUAGE% --yes"
@@ -338,7 +360,7 @@ END
 
 DEFINE_ACTION_FUNCTION spell_comparison
 BEGIN
- ACTION_IF !FILE_EXISTS "%workspace%/spells_not_in_bg2.txt" BEGIN
+ ACTION_IF !FILE_EXISTS "%data_loc%/spells_not_in_bg2.txt" BEGIN
    COPY_EXISTING "spell.ids" "%workspace%"
          READ_2DA_ENTRIES_NOW iwdspl_array 2
          FOR (i=1;i<iwdspl_array;i+=1) BEGIN

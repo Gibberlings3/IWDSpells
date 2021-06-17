@@ -184,37 +184,51 @@ END
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-DEFINE_ACTION_FUNCTION read_in_list
+DEFINE_DIMORPHIC_FUNCTION read_in_list
      INT_VAR col=0
+			 existing=0
+			 first_row=0
      STR_VAR file=""
              location=""
              locbase=""
              locabs=""
+             force_case=""
      RET list
+     RET_ARRAY array
 BEGIN
-     LAF get_directory STR_VAR location locbase locabs RET file_loc=directory END
-     OUTER_SPRINT file "%file_loc%/%file%"
-     COPY ~%file%~ ~%workspace%~
-           SPRINT list ""
-           COUNT_2DA_ROWS 0 rowcount
-           FOR (i=0;i<rowcount;i+=1) BEGIN
-              READ_2DA_ENTRY i col 0 entry
-              SPRINT list ~%list% %entry%~
-           END
-     BUT_ONLY
+	 ACTION_CLEAR_ARRAY array
+     ACTION_IF existing BEGIN
+		COPY_EXISTING ~%file%~ ~%workspace%~
+			LPF read_in_list_core INT_VAR col first_row STR_VAR force_case RET list RET_ARRAY array END
+		BUT_ONLY	 
+	 END ELSE BEGIN
+		LAF get_directory STR_VAR location locbase locabs RET file_loc=directory END
+		OUTER_SPRINT file "%file_loc%/%file%"
+		COPY ~%file%~ ~%workspace%~
+			LPF read_in_list_core INT_VAR col first_row STR_VAR force_case RET list RET_ARRAY array END
+		BUT_ONLY
+	END
 END
 
-DEFINE_PATCH_FUNCTION read_in_list
-      INT_VAR col=0
-      STR_VAR file=""
-             location=""
-             locbase=""
-             locabs=""
-      RET list
+DEFINE_PATCH_FUNCTION read_in_list_core INT_VAR col=0 first_row=0 STR_VAR force_case="" RET list RET_ARRAY array 
 BEGIN
-   INNER_ACTION BEGIN
-      LAF read_in_list INT_VAR col STR_VAR file location locbase locabs RET list=list END
-   END
+	SPRINT list ""
+	COUNT_2DA_COLS colcount
+	READ_2DA_ENTRIES_NOW 2da_data colcount
+    FOR (i=first_row;i<2da_data;i+=1) BEGIN
+        READ_2DA_ENTRY_FORMER 2da_data i col entry
+        PATCH_MATCH "%force_case%" WITH
+        lower BEGIN
+            TO_LOWER entry
+        END
+        upper BEGIN
+            TO_UPPER entry
+        END
+        DEFAULT
+        END
+        SPRINT list ~%list% %entry%~
+        SPRINT $array("%entry%") ""
+    END
 END
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -226,7 +240,7 @@ END
 DEFINE_ACTION_FUNCTION write_list
      STR_VAR list=""
              file=""
-             locabs="%workspace%"
+             locabs="%data_loc%"
              location=""
              locbase=""
 BEGIN
@@ -239,7 +253,7 @@ END
 DEFINE_PATCH_FUNCTION write_list
      STR_VAR list=""
              file=""
-             locabs="%workspace%"
+             locabs="%data_loc%"
              location=""
              locbase=""
 BEGIN
@@ -251,6 +265,8 @@ END
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////              load a file (which should be a 2-column array or a 3-column array with => separator, or a list of x=>y pairs) and turn col 1-2 into an associative array list ("key1=>value1 key2=>value2" etc)
+/////////////              
+/////////////              Alternatively get it back as a bona fide assoc array
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -259,7 +275,10 @@ DEFINE_ACTION_FUNCTION read_in_assoc_array
              location=""
              locbase=""
              locabs=""
+             force_case=""
+
      RET list
+     RET_ARRAY array
 BEGIN
      LAF get_directory STR_VAR location locbase locabs RET file_loc=directory END
      OUTER_SPRINT file "%file_loc%/%file%"
@@ -270,7 +289,20 @@ BEGIN
            FOR (i=0;i<rowcount;i+=1) BEGIN
               READ_2DA_ENTRY i 0 0 key
               READ_2DA_ENTRY i 1 0 value
+              PATCH_MATCH "%force_case%" WITH
+              lower BEGIN
+                 TO_LOWER key
+              END
+              upper BEGIN
+                 TO_UPPER key
+              END
+              DEFAULT
+              END
               SPRINT list ~%list% %key%=>%value%~
+              SPRINT $array("%key%") "%value%"
+           END
+           PATCH_IF rowcount=0 BEGIN
+              SPRINT $array("UNDEFINED") ""
            END
      BUT_ONLY
 END
@@ -281,9 +313,10 @@ DEFINE_PATCH_FUNCTION read_in_assoc_array
              locbase=""
              locabs=""
       RET list
+      RET_ARRAY array
 BEGIN
    INNER_ACTION BEGIN
-      LAF read_in_assoc_array STR_VAR file location locabs locbase RET list=list END
+      LAF read_in_assoc_array STR_VAR file location locabs locbase RET list RET_ARRAY array END
    END
 END
 
