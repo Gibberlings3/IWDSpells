@@ -102,7 +102,7 @@ LAF install_iwd_spell_resources
                lookup=iwd_strref.txt
                proj_list=divine_proj.txt
                smtables_list=divine_smtable.txt
-               scroll_price_list=scroll_prices_arcane.txt
+               scroll_price_list=scroll_prices_divine.txt
                tra=iwdspells.tra
                biff="dw#iwdp"
                afterwards="divine_spells_postproduction"
@@ -131,21 +131,20 @@ LAF install_iwd_spell_resources
            INT_VAR 
 				truncate_at_level=20
 		   STR_VAR
-               spell_list=divine_resrefs.txt
+               spell_list=bardic_resrefs.txt
                lookup=iwd_strref.txt
-               proj_list=divine_proj.txt
-               smtables_list=divine_smtable.txt
+               proj_list=bardic_proj.txt
+               smtables_list=bardic_smtable.txt
                scroll_price_list=scroll_prices_arcane.txt
                tra=iwdspells.tra
                biff="dw#iwdb"
-               afterwards="divine_spells_postproduction"
-               afterwards_tra="dw_iwdspells_divine.tra"
-               bam_copy="bam_copy_divine.2da"
+               afterwards="bardsong_postproduction"
+               afterwards_tra="dw_iwdspells_bard.tra"
+               bam_copy="bam_copy_arcane.2da"
                green_bams=""
 			   style_old="%iwdspells_data%/spell_styles_iwd.2da"
 			   style_new="%iwdspells_data%/spell_styles_bg.2da"
 END
-
 
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
