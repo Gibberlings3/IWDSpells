@@ -17,7 +17,7 @@ ALWAYS
    OUTER_SPRINT inifile "%scsroot%.ini"
    INCLUDE ~%scsroot%/%iwdspells_lib%/always.tph~
    OUTER_SET do_not_biff=1   // set to 0 and most resources get biffed
-   OUTER_SET get_all_languages=0  // set to 0 when testing the resource-collection install, because it speeds things up a lot
+   OUTER_SET get_all_languages=1  // set to 0 when testing the resource-collection install, because it speeds things up a lot
 END
 
 ////////////////////////////////////////////////////////////////////

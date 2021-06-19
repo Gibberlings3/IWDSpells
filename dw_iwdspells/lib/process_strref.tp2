@@ -15,6 +15,7 @@ BEGIN "Automated conversion of strings" DESIGNATED 1000 NO_LOG_RECORD
    OUTER_SPRINT ssl_loc "%ssl_loc%"
    OUTER_SPRINT data_loc "%data_loc%"
    OUTER_SPRINT language "%language%"
+   OUTER_SPRINT atsymbol "@"
 
 INCLUDE "%MOD_FOLDER%/%iwdspells_lib%/get_iwd_spell_resources.tpa"
 
