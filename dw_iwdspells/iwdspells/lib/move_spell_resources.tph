@@ -834,7 +834,7 @@ BEGIN
 	// do the swaps
 	ACTION_PHP_EACH updatelist AS resource=>discard BEGIN
 		ACTION_MATCH "%resource%" WITH
-		".*\.\(itm\|spl\)" BEGIN
+		".*\.\(itm\|spl\|cre\)" BEGIN
 			COPY_EXISTING "%resource%" override
 				LPF DELETE_EFFECT STR_VAR match_function="update_spell_resrefs_helper2(%resource%)" END // must be this way round, otherwise we might delete renamed resrefs
 				LPF ALTER_EFFECT STR_VAR function="update_spell_resrefs_helper(%resource%)" END
