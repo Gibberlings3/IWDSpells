@@ -57,7 +57,7 @@ DEFINE_ACTION_FUNCTION no_chant_spell_failure BEGIN
    
 		COPY_EXISTING "%CLERIC_CHANT%.spl" override
 			LPF DELETE_EFFECT INT_VAR match_opcode=145 END
-			SAY 0x50 @1
+			SAY 0x50 @101
 		BUT_ONLY
 	END
 END

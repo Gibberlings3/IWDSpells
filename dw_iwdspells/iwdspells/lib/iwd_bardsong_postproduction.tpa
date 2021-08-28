@@ -54,7 +54,7 @@ DEFINE_ACTION_FUNCTION iwd_bardsong_postproduction BEGIN
 				m.ab.alter{s_icon:=spenbarb}
 				m_name:="%m0_name%"
 				INNER_PATCH_SAVE m_description "%m0_description%" BEGIN
-					old:=@23
+					old:=@223
 					REPLACE_TEXTUALLY "%old%" ""
 				END
 			]
@@ -67,13 +67,13 @@ DEFINE_ACTION_FUNCTION iwd_bardsong_postproduction BEGIN
 END
 
 DEFINE_PATCH_FUNCTION bard_desc_helper BEGIN
-	SPRINT old @1
+	SPRINT old @201
 	REPLACE_TEXTUALLY "\(.*\)%old%.*" "\1DW_PLACEHOLDER"
-	PATCH_FOR_EACH tra_ref IN 2 3 4 BEGIN
+	PATCH_FOR_EACH tra_ref IN 202 203 204 BEGIN
 		SPRINT old (AT tra_ref)
 		REPLACE_TEXTUALLY "[%WNL%%LNL%%MNL%].*%old%" ""
 	END
-	PATCH_FOR_EACH tra_ref IN 16 15 14 13 12 11 10 BEGIN
+	PATCH_FOR_EACH tra_ref IN 216 215 214 213 212 211 210 BEGIN
 		SPRINT new (AT tra_ref)
 		REPLACE_TEXTUALLY "\(.*\)DW_PLACEHOLDER.*\([%WNL%%LNL%%MNL%]\)" "\1DW_PLACEHOLDER\2\1%new%\2"		
 	END
@@ -81,9 +81,9 @@ DEFINE_PATCH_FUNCTION bard_desc_helper BEGIN
 END
 
 DEFINE_PATCH_FUNCTION bard_kit_desc_helper BEGIN
-	SPRINT discard @21
-	SPRINT disadvantages @22
-	SPRINT newline @20
+	SPRINT discard @221
+	SPRINT disadvantages @222
+	SPRINT newline @220
 	REPLACE_TEXTUALLY "%disadvantages%\(.*[%WNL%%MNL%%LNL%][^a-zA-Z0-9]*\)\([a-zA-Z0-9].*\)" "%disadvantages%\1%newline%\1\2"
 	REPLACE_TEXTUALLY "[%WNL%%MNL%%LNL%][^a-zA-z]*%discard%.*" ""
 END

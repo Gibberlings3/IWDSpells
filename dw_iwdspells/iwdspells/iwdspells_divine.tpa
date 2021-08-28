@@ -54,7 +54,7 @@ DEFINE_ACTION_FUNCTION iwdspells_divine STR_VAR version="" BEGIN
 					skip_these_spells
 					log="iwd_spells_installed.txt"
 					afterwards="iwd_divine_spells_postproduction"
-					afterwards_tra="dw_iwdspells_divine"
+					afterwards_tra="dw_iwdspells"
 					custom_includes
 		END
 

@@ -56,7 +56,7 @@ BEGIN
 			LAF run STR_VAR file="iwdspells_icons" location="%iwdspell_path%" END
 		END
 		collect BEGIN
-			LAF run STR_VAR file="collect_iwd_resources" location="%iwdspell_path%" END
+			LAF run STR_VAR file="collect_iwd_resources" location="%iwdspell_path%" tra=dw_iwdspells END
 		END
 		test BEGIN
 			INCLUDE "%MOD_FOLDER%/%custom_includes%"

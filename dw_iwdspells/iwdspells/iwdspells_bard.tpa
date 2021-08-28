@@ -35,7 +35,7 @@ DEFINE_ACTION_FUNCTION iwdspells_bard STR_VAR version="" BEGIN
 					skip_these_spells
 					log="iwd_spells_installed.txt"
 					afterwards="iwd_bardsong_postproduction"
-					afterwards_tra="dw_iwdspells_bard"
+					afterwards_tra="dw_iwdspells"
 					custom_includes
 		END
 
