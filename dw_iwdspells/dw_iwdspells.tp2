@@ -9,6 +9,16 @@ AUTO_EVAL_STRINGS
 ASK_EVERY_COMPONENT
 //README "ascension/doc/readme-ascension.html"
 
+ // uncomment this ALWAYS if you want to test on an SFO environment
+
+ALWAYS 
+	// usual SFO loading - usually done in ALWAYS
+	OUTER_SPRINT sfo_library_path "sfo" // the path (relative to your mod directory) to the directory SFO is in. Usually 'sfo'.
+	OUTER_SPRINT sfo_tra_path "lang" // the path (relative to your mod directory) to the directory in which you keep tra files. Usually 'lang' or 'tra'.
+	INCLUDE "%MOD_FOLDER%/%sfo_library_path%/sfo_init.tpc"
+END
+
+
 // Language Options
 
 
@@ -107,15 +117,6 @@ INCLUDE "%MOD_FOLDER%/iwdspells/iwdspells_extern.tpa"
 LAF iwdspells_extern STR_VAR type=bard END
 
 //////////////////////////////////////////////////////////////////////
-/// Include all IWD spells/songs in BG/BG2 (alternate install method demo)
-//////////////////////////////////////////////////////////////////////
-
-BEGIN @400 DESIGNATED 10300 
-
-INCLUDE "%MOD_FOLDER%/iwdspells/iwdspells_extern.tpa"
-LAF iwdspells_extern STR_VAR type="bard divine arcane" END
-
-//////////////////////////////////////////////////////////////////////
 /// Process oBG2 icons
 ///
 /// in a real mod you'd need some kind of game check here (though actual function will just do nothing if we're on EE)
@@ -125,6 +126,38 @@ BEGIN @500 DESIGNATED 10400
 
 INCLUDE "%MOD_FOLDER%/iwdspells/iwdspells_extern.tpa"
 LAF iwdspells_extern STR_VAR type="icon" END
+
+//////////////////////////////////////////////////////////////////////
+/// Include IWD arcane spells in BG/BG2 - with SFO loaded
+//////////////////////////////////////////////////////////////////////
+
+BEGIN @101 DESIGNATED 11000
+
+LAF run STR_VAR file=iwdspells_arcane location=iwdspells END
+
+//////////////////////////////////////////////////////////////////////
+/// Include IWD divine spells in BG/BG2 - with SFO loaded
+//////////////////////////////////////////////////////////////////////
+
+BEGIN @201 DESIGNATED 11100
+
+LAF run STR_VAR file=iwdspells_divine location=iwdspells END
+
+//////////////////////////////////////////////////////////////////////
+/// Include IWD bardsongs in BG/BG2 - with SFO loaded
+//////////////////////////////////////////////////////////////////////
+
+BEGIN @301 DESIGNATED 11200
+
+LAF run STR_VAR file=iwdspells_bard location=iwdspells END
+
+//////////////////////////////////////////////////////////////////////
+/// Process oBG2 icons - with SFO loaded
+//////////////////////////////////////////////////////////////////////
+
+BEGIN @501 DESIGNATED 11300
+
+LAF run STR_VAR file=iwdspells_icons location=iwdspells END
 
 //////////////////////////////////////////////////////////////////////////
 //   IWD resource collector
