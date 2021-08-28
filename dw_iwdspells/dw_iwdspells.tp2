@@ -1,0 +1,140 @@
+
+
+BACKUP ~weidu_external/backup/dw_talents~
+AUTHOR "DavidW"
+MODDER setup_tra none area_variables none missing_extern none missing_resref none ict2_actions none missing_eval none overwriting_file none fun_args warn
+VERSION ~1.0~
+
+AUTO_EVAL_STRINGS
+ASK_EVERY_COMPONENT
+//README "ascension/doc/readme-ascension.html"
+
+// Language Options
+
+
+LANGUAGE 	~English~
+			~english~
+			~dw_iwdspells/lang/english/setup.tra~
+LANGUAGE 	~Czech~
+			~czech~
+			~dw_iwdspells/lang/english/setup.tra~
+LANGUAGE 	~German~
+			~german~
+			~dw_iwdspells/lang/english/setup.tra~
+LANGUAGE 	~Spanish~
+			~spanish~
+			~dw_iwdspells/lang/english/setup.tra~
+LANGUAGE 	~French~
+			~french~
+			~dw_iwdspells/lang/english/setup.tra~
+LANGUAGE 	~Italian~
+			~italian~
+			~dw_iwdspells/lang/english/setup.tra~
+LANGUAGE 	~Korean~
+			~korean~
+			~dw_iwdspells/lang/english/setup.tra~
+LANGUAGE 	~Polish~
+			~polish~
+			~dw_iwdspells/lang/english/setup.tra~
+LANGUAGE 	~Portuges~
+			~portugese~
+			~dw_iwdspells/lang/english/setup.tra~
+LANGUAGE 	~Russian~
+			~russian~
+			~dw_iwdspells/lang/english/setup.tra~
+LANGUAGE 	~Traditional Chinese~
+			~tchinese~
+			~dw_iwdspells/lang/english/setup.tra~
+LANGUAGE 	~Traditional Chinese~
+			~tchinese~
+			~dw_iwdspells/lang/english/setup.tra~
+LANGUAGE 	~Chinese~
+			~zchinese~
+			~dw_iwdspells/lang/english/setup.tra~
+			
+
+
+/*
+//////////////////////////////////////////////////////////////////////
+/// Test
+//////////////////////////////////////////////////////////////////////
+
+BEGIN @700 DESIGNATED 0
+
+INCLUDE "%MOD_FOLDER%/iwdspells/iwdspells_extern.tpa"
+LAF iwdspells_extern 
+	STR_VAR type=test
+			custom_includes="test.tpa" 
+END
+*/
+
+//////////////////////////////////////////////////////////////////////
+/// Include IWD arcane spells in BG/BG2
+//////////////////////////////////////////////////////////////////////
+
+BEGIN @100 DESIGNATED 10000
+
+INCLUDE "%MOD_FOLDER%/iwdspells/iwdspells_extern.tpa"
+LAF iwdspells_extern 
+	STR_VAR type=arcane 
+			custom_includes="iwdspells/custom/cd_scroll_placement.tpa iwdspells/custom/cd_arcane_spell_use.tpa" 
+			sfo_library_path="sfo" 			// actually these are the default
+			iwdspell_path="iwdspells"		// versions, no need to set them explicitly
+			iconv_path="lang/iconv"			// if you use these values
+			oggdec_path="bin"
+			sox_path="bin"
+END
+
+//////////////////////////////////////////////////////////////////////
+/// Include IWD divine spells in BG/BG2
+//////////////////////////////////////////////////////////////////////
+
+BEGIN @200 DESIGNATED 10100 
+
+INCLUDE "%MOD_FOLDER%/iwdspells/iwdspells_extern.tpa"
+LAF iwdspells_extern 
+	STR_VAR type=divine 
+	custom_includes="iwdspells/custom/cd_divine_spell_use.tpa" 
+END
+
+//////////////////////////////////////////////////////////////////////
+/// Include IWD bard songs in BG/BG2
+//////////////////////////////////////////////////////////////////////
+
+BEGIN @300 DESIGNATED 10200 
+
+INCLUDE "%MOD_FOLDER%/iwdspells/iwdspells_extern.tpa"
+LAF iwdspells_extern STR_VAR type=bard END
+
+//////////////////////////////////////////////////////////////////////
+/// Include all IWD spells/songs in BG/BG2 (alternate install method demo)
+//////////////////////////////////////////////////////////////////////
+
+BEGIN @400 DESIGNATED 10300 
+
+INCLUDE "%MOD_FOLDER%/iwdspells/iwdspells_extern.tpa"
+LAF iwdspells_extern STR_VAR type="bard divine arcane" END
+
+//////////////////////////////////////////////////////////////////////
+/// Process oBG2 icons
+///
+/// in a real mod you'd need some kind of game check here (though actual function will just do nothing if we're on EE)
+//////////////////////////////////////////////////////////////////////
+
+BEGIN @500 DESIGNATED 10400 
+
+INCLUDE "%MOD_FOLDER%/iwdspells/iwdspells_extern.tpa"
+LAF iwdspells_extern STR_VAR type="icon" END
+
+//////////////////////////////////////////////////////////////////////////
+//   IWD resource collector
+//
+//	 Shouldn't run in distributed code; use offline to generate the copyover resources
+//////////////////////////////////////////////////////////////////////////
+
+BEGIN @600 DESIGNATED 20000
+REQUIRE_PREDICATE GAME_IS iwdee "Run on IWDEE"
+
+INCLUDE "%MOD_FOLDER%/iwdspells/iwdspells_extern.tpa"
+LAF iwdspells_extern STR_VAR type="collect" END
+PRINT "Now replace the 'copyover' folder in %MOD_FOLDER%/iwdspells with the 'copyover' folder in the main game directory."

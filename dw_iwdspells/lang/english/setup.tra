@@ -1,0 +1,7 @@
+@100="Install IWD arcane spells"
+@200="Install IWD divine spells"
+@300="Install IWD bard songs"
+@400="Install all IWD spells and songs (alternate install method demo)"
+@500="Install oBG2 icons"
+@600="Collect IWD spell resources from IWDEE"
+@700="Test space (use to test code with IWDSPELLS variables/functions loaded)"

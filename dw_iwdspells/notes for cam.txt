@@ -1,0 +1,42 @@
+Architecture changes:
+- with a view to modularity, moved the files into two folders: iwdspells and sfo. Inside iwdspells, 'lib' contains function libraries, 'data' contains tables of data to load, 'resource' contains files to add to the game 'copyover' is the output of the resource-collection run, 'lang' contains the tra files for the small number of manual changes, 'obg2_res' contains the obg2 resources, and 'custom' contains iwdification's AI and scroll-placement patches.
+- wrap overall install into a new function, iwdspells_extern. Installing the spells is just a matter of calling that function with the appropriate arguments.
+- written overall readme.
+
+Converter core-function changes:
+- We no longer miss wavs in the eff/tra/aft namespace.
+- EE icons are now handled automatically and nondestructively
+- crosspatch is internalized: unneeded references to spells are stripped and new ones are updated. (We do it by stashing copies of the spells right at the end of the install proces.)
+- scrolls should now set usability correctly.
+- new column in the spell-choice lists allows us to list a bunch of boolean variables (separated by |) and for the spell to be installed only if one or more evaluates to 0. (We use this to natively keep track of which spells can't be installed on oBG2.)
+- converter now INCLUDEs a list of custom files.
+- opcode 336 now properly copies over requires resources.
+
+Converter data changes:
+- restored a few resources that are missing on some games, e.g. abjurh, paralh
+- restored green Invisible Stalker
+
+Converter helper-function changes
+- split summoned_monster.tpa into arcane and divine components.
+- moved conversion errors for salamanders and trolls into summoned_monsters_arcane function
+- ogremasu and dw#msogr now compile on oBG2
+- Cam's new icons for elementals now incorporated into main elemental_summoning.tpa
+- broken weapons for shadow creatures fixed
+- summoned_monsters functions now automatically check for bdsum script and for droppable/stealable gear
+- dealign function now excludes Lathander/Ilmater; also handles druid usability.
+- swept IWDEE bugfixes into iwdfix.tph
+- incorporated residual Cam fixes into cd_arcane_post.tpa, cd_divine_post.tpa, cd_bardic_post.tpa
+- integrated oBG2 content into obg2_arcane, obg2_divine, obg2_bard functions
+
+Additional changes
+- we now handle oBG2 icons nondestructively (see readme)
+
+How to make changes
+- fixes for IWD spells should be made in iwdfix.tph (and then you need to regenerate copyover)
+- manual fixes for post-conversion spells (like adding DEMILICH_HOWL to Kaudies) which also apply to EE can be done in cd_[arcane/divine/bard]_post.tpa
+- oBG2-specific fixes live in obg2_[arcane/divine/bard].tpa
+- for systematic problems, let's talk, as it might be a converter issue.
+
+
+
+
