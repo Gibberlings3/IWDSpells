@@ -301,11 +301,39 @@ END
 ///// CLERIC_SUNSCORCH                                 \\\\\
 /////                                                  \\\\\ 
 
+// [DW] Myconid race is not automatically present in oBG2
+// Add it in 164, or the first available space after 164 in
+// the (unlikely) event that 164 is taken
+
+	ACTION_IF IDS_OF_SYMBOL (race myconid)<0 BEGIN
+		OUTER_PATCH "" BEGIN
+			found_gap=0
+			ids=164
+			WHILE !found_gap BEGIN
+				LOOKUP_IDS_SYMBOL_OF_INT entry race ids
+				PATCH_IF IS_AN_INT entry BEGIN
+					found_gap=1
+				END ELSE BEGIN
+					++ids
+				END
+			END
+		END
+		APPEND "race.ids" "%ids%%TAB%MYCONID"
+		ACTION_FOR_EACH myconid IN icmyc01 icmyc02 BEGIN
+			ACTION_IF FILE_EXISTS_IN_GAME "%myconid%.cre" BEGIN
+				COPY_EXISTING "%myconid%.cre" override
+					WRITE_BYTE 0x272 ids
+				BUT_ONLY
+			END
+		END
+	END
+	OUTER_SET myconid_ids=IDS_OF_SYMBOL (race myconid)
+
   // sunscorch d is for undead/myconids, sunscorch-c for the normies
   COPY_EXISTING ~%CLERIC_SUNSCORCH%.spl~ ~override~
     LPF ALTER_EFFECT INT_VAR match_opcode = 326 opcode = 177 parameter1 = 164 parameter2 = 4 STR_VAR match_resource = EVAL ~%CLERIC_SUNSCORCH%c~ resource = cdixd116 END
     LPF CLONE_EFFECT INT_VAR match_opcode = 177 STR_VAR resource = cdiad116 END
-    LPF CLONE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 164 match_parameter2 = 4 parameter1 = 4 parameter2 = 3 END
+    LPF CLONE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = myconid_ids match_parameter2 = 4 parameter1 = 4 parameter2 = 3 END
     LPF ALTER_EFFECT INT_VAR match_opcode = 326 opcode = 146 parameter2 = 1 STR_VAR resource = EVAL ~%CLERIC_SUNSCORCH%c~ END
     LPF ALTER_SPELL_HEADER INT_VAR projectile = 1 END
     PATCH_FOR_EACH res IN cdid1151 cdid1152 cdid1153 cdid1154 BEGIN
