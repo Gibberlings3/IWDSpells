@@ -75,7 +75,6 @@ DEFINE_ACTION_FUNCTION spl_copy
 		scroll_resref
 BEGIN
 	OUTER_WHILE "%spl%" STR_CMP "" BEGIN
-		PRINT "%spl%"
 		OUTER_SET is_ids_here=is_ids
 		ACTION_IF INDEX ("=>" "%spl%")>=0 BEGIN
 			LAF return_first_pair STR_VAR list="%spl%" RET key value spl=list END
