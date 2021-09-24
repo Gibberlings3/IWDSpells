@@ -935,8 +935,10 @@ END
 ///// CLERIC_MOLD_TOUCH                                \\\\\
 /////                                                  \\\\\ 
   
+DELETE ~override/%CLERIC_MOLD_TOUCH%a.spl~ // a subspell not needed for EEs
+ 
 COPY_EXISTING ~%CLERIC_MOLD_TOUCH%.spl~ ~override~
-  PATCH_FOR_EACH op IN 78 206 318 328 BEGIN
+  PATCH_FOR_EACH op IN 78 146 206 318 328 BEGIN
     LPF DELETE_EFFECT INT_VAR match_opcode = op END
   END  
   LPF CLONE_EFFECT INT_VAR match_opcode = 324 match_parameter2 =  55 opcode = 177 parameter1 = 144 parameter2 = 4 STR_VAR resource = cdix326 END // race = golem
