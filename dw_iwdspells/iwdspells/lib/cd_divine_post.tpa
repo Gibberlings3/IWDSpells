@@ -16,9 +16,16 @@ IF_EXISTS
   
   END  
 
-  COPY ~%MOD_FOLDER%/%component_loc%/lib/resource/0103.ini~    ~override~ // spiritual wrath animation
-       ~%MOD_FOLDER%/%component_loc%/lib/resource/swrathu.bam~ ~override~
-       ~%MOD_FOLDER%/%component_loc%/lib/resource/0104.ini~    ~override~ // smashing wave animation
-       ~%MOD_FOLDER%/%component_loc%/lib/resource/swavet.bam~  ~override~
+  ACTION_IF enhanced_edition BEGIN
+
+    COPY ~%MOD_FOLDER%/%component_loc%/lib/resource/0103.ini~    ~override~ // spiritual wrath animation
+         ~%MOD_FOLDER%/%component_loc%/lib/resource/swrathu.bam~ ~override~
+         ~%MOD_FOLDER%/%component_loc%/lib/resource/0104.ini~    ~override~ // smashing wave animation
+         ~%MOD_FOLDER%/%component_loc%/lib/resource/swavet.bam~  ~override~
+
+    APPEND ~animate.ids~ ~0x0103 SPIRITUAL_WRATH~ UNLESS ~^0x0103~  
+    APPEND ~animate.ids~ ~0x0104 SMASHING_WAVE~   UNLESS ~^0x0104~ 
+
+  END 
        
 END
