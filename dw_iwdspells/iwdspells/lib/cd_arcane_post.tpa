@@ -1,6 +1,10 @@
 DEFINE_ACTION_FUNCTION cd_arcane_post BEGIN
 
-	INCLUDE "%MOD_FOLDER%/%component_loc%/lib/cdfunctions.tpa"
+  INCLUDE "%MOD_FOLDER%/%component_loc%/lib/cdfunctions.tpa"
+
+  COPY ~%MOD_FOLDER%/%component_loc%/lib/resource/0105.ini~    ~override~ // lance of disruption animation
+       ~%MOD_FOLDER%/%component_loc%/lib/resource/lodisru.bam~ ~override~
+       
 	COPY_EXISTING ~spwi114.spl~ ~override~ // update shield to block MFM, too
 	  LPF CLONE_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~spwi112~ resource = EVAL ~%WIZARD_MORDENKAINENS_FORCE_MISSILES%~ END
 	  LPF CLONE_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~spwi112~ resource = EVAL ~%WIZARD_MORDENKAINENS_FORCE_MISSILES%b~ END 
