@@ -1,6 +1,10 @@
 DEFINE_ACTION_FUNCTION cd_divine_post BEGIN
 
 	INCLUDE "%MOD_FOLDER%/%component_loc%/lib/cdfunctions.tpa"
+  
+  // iwdee fix
+  COPY_EXISTING ~%CLERIC_SYMBOL_PAIN%.spl~ ~override~
+    SAY 0x50 @226
 
   // bgee 2.6 includes this file, even though it's unused, so we patch just in case
   COPY_EXISTING ~asumm1x.vvc~ ~override~
