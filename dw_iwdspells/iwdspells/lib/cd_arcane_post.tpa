@@ -22,11 +22,11 @@ DEFINE_ACTION_FUNCTION cd_arcane_post BEGIN
 	  READ_LONG 0x6a fx_off
 	  SET total_fx = ((SOURCE_SIZE - fx_off) / 0x30)
 	  FOR (index = 0 ; index < total_fx ; ++index) BEGIN
-		READ_SHORT (fx_off +        (index * 0x30)) opcode
-		PATCH_IF opcode = 331 BEGIN
-		  READ_LONG (fx_off + 0x08 + (index * 0x30)) ms2table
-		  SET index = total_fx // kill loop
-		END
+      READ_SHORT (fx_off +        (index * 0x30)) opcode
+      PATCH_IF opcode = 331 BEGIN
+        READ_LONG (fx_off + 0x08 + (index * 0x30)) ms2table
+        SET index = total_fx // kill loop
+      END
 	  END
 	  BUT_ONLY
 	

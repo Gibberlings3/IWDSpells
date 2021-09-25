@@ -714,12 +714,11 @@ ACTION_IF !MOD_IS_INSTALLED "spell_rev/setup-spell_rev.tp2" 0 BEGIN
     
   COPY_EXISTING ~%WIZARD_MONSTER_SUMMONING_1%.spl~ ~override~ // above shenigans turn MS1 into 1d5 monsters, now make it 1d5+1 (lazy 2d3 mimic)
     LPF ALTER_EFFECT INT_VAR match_opcode = 127 parameter1 = 2 match_probability1 = 100 END
-    
-  // summons 6 creatures from MS2 table  
+ 
+  // summons 6 creatures from MS2 table;   
   COPY_EXISTING ~wand10.itm~ ~override~ 
-      LPF CLONE_EFFECT INT_VAR match_opcode = 331 opcode = 215 parameter2 = 2 timing = 0 duration = 2 resist_dispel = 0 dicenumber = 0 dicesize = 0 STR_VAR resource = msumm1x END // add animation
-      LPF ALTER_EFFECT INT_VAR match_opcode = 331 opcode = 127 parameter1 = 12 parameter2 = 0 dicesize = 0 dicenumber = 0 STR_VAR resource = EVAL ~msummo2~ END
-
+    LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 331 opcode = 215 parameter2 = 2 timing = 0 duration = 2 resist_dispel = 0 dicenumber = 0 dicesize = 0 STR_VAR resource = msumm1x END // add animation
+    LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 331 opcode = 127 parameter1 = 12 parameter2 = 0 dicesize = 0 dicenumber = 0 STR_VAR resource = EVAL ~msummo2~ END
 
 END
 /////                                                  \\\\\
