@@ -1,6 +1,5 @@
 DEFINE_ACTION_FUNCTION obg2_divine BEGIN
 
-
 	INCLUDE "%MOD_FOLDER%/%component_loc%/lib/cdfunctions.tpa"
 
 /* 
@@ -73,27 +72,6 @@ END
                 ~sppr510.spl~ ~override~ // cause critical wounds (using IWD alt)
                 ~sppr613.spl~ ~override~ // physical mirror (now at level 5)
     WRITE_LONG 0x1e (THIS BOR (BIT30 + BIT31)) // adds cleric/pal and druid/ran flags, effectively excluding it from all divine casters
-              
-
-/////                                                  \\\\\
-///// creature animations                              \\\\\
-/////                                                  \\\\\
-
-  ACTION_IF MOD_IS_INSTALLED ~INFINITYANIMATIONS/SETUP-INFINITYANIMATIONS.TP2~ ~500~ BEGIN // 'more base animations'
-
-    ACTION_IF IDS_OF_SYMBOL (~animate~ ~BEETLE_BLACK~) > 0 THEN BEGIN
-      OUTER_SET anim_beetle = IDS_OF_SYMBOL (~animate~ ~BEETLE_BLACK~)
-    END
-    
-  END
-
-  ACTION_IF anim_beetle BEGIN // only set if animation is present, otherwise never installed
-  
-    COPY_EXISTING ~gisbomb.cre~ ~override~
-                  ~gisborb.cre~ ~override~
-      WRITE_LONG 0x28 anim_beetle
-
-  END   
 
 /////                                                  \\\\\
 ///// immunity effs                                    \\\\\

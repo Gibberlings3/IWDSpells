@@ -475,7 +475,7 @@ BEGIN
 			OUTER_SET skip=1
 			OUTER_WHILE "%condition%" STR_CMP "" BEGIN
 				LAF return_first_entry STR_VAR list="%condition%" separator="|" RET var=entry condition=list END
-				ACTION_IF EVAL "%%var%%" STR_EQ 1 BEGIN
+				ACTION_IF (EVAL "%%var%%" STR_EQ "0" = 0) BEGIN
 					OUTER_SET skip=0
 				END
 			END
