@@ -132,6 +132,12 @@ DEFINE_ACTION_FUNCTION iwd_spell_fixes BEGIN
   COPY_EXISTING ~%CLERIC_MOLD_TOUCH%b.spl~ ~override~
     WRITE_BYTE 0x1c 2 // spell type
     WRITE_BYTE 0x25 8 // subspell should have proper school set 
+    
+  // create new subspell for final 1d6 of mold touch damage when saved against  
+  COPY_EXISTING ~%CLERIC_MOLD_TOUCH%.spl~  ~override/%CLERIC_MOLD_TOUCH%a.spl~
+    WRITE_LONG 0x08 "-1" // blank name
+    LPF DELETE_EFFECT END // delete eveything
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 78 target = 2 parameter1 = 1 parameter2 = 12 timing = 3 special = 7 STR_VAR resource = EVAL ~%CLERIC_MOLD_TOUCH%b~ END
 
 	// iwdee bug: blood rage can avoid fatigue with a re-cast - clone 321 into 206 then delete it; also block ops 18 and 98
 	COPY_EXISTING ~%CLERIC_BLOOD_RAGE%.spl~  ~override~
