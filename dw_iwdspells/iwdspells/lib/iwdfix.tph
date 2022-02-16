@@ -78,6 +78,11 @@ DEFINE_ACTION_FUNCTION iwd_spell_fixes BEGIN
 	  LPF CLONE_EFFECT INT_VAR match_opcode =  142 match_duration = 12
 		opcode = 206 parameter1 = 0 parameter2 = 0 duration = 1 STR_VAR resource = EVAL ~%WIZARD_GREAT_SHOUT%~ insert = below END 
 
+	// iwdee fix: deafness from (great) shout not including portrait icon
+	COPY_EXISTING ~%WIZARD_GREAT_SHOUT%.spl~ ~override~
+                ~%WIZARD_SHOUT%.spl~       ~override~
+    LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 80 opcode = 142 parameter2 = 112 END // clone deaf into deafness icon
+
 	// iwdee fix: emotion fear should only remove emotion courage if the normal save/MR checks work  
 	COPY_EXISTING ~%WIZARD_EMOTION_FEAR%.spl~ ~override~
 	  LPF ALTER_EFFECT INT_VAR match_opcode = 321 resist_dispel = 1 savingthrow = BIT0 END
@@ -94,6 +99,7 @@ DEFINE_ACTION_FUNCTION iwd_spell_fixes BEGIN
 
 	COPY_EXISTING ~idpro313.pro~ ~override~
 	  WRITE_ASCII 0x18 ~#tra_59~ #8
+
   
 	// iwdee bug: use 176 for movement speed, 321 needs save  
 	COPY_EXISTING ~%WIZARD_SUFFOCATE%.spl~ ~override~ 
@@ -104,17 +110,6 @@ DEFINE_ACTION_FUNCTION iwd_spell_fixes BEGIN
 	  COPY_EXISTING ~%WIZARD_GREAT_SHOUT%.spl~ ~override~
 					~%WIZARD_ICELANCE%.spl~    ~override~
 		LPF DELETE_EFFECT INT_VAR match_opcode = 142 match_parameter2 = 55 END 
-    
-  // summons should always bypass spell protections, cosmetics on wrong target
-  COPY_EXISTING ~%WIZARD_CONTACT_OTHER_PLANE%.spl~ ~override~
-    LPF ALTER_EFFECT INT_VAR power = 0 target = 1 END
-    BUT_ONLY
-
-  // caster pause shouldn't be blocked by spell protections, deafness string bypassing save
-  COPY_EXISTING ~%WIZARD_SHOUT%.spl~       ~override~ // shout
-                ~%WIZARD_GREAT_SHOUT%.spl~ ~override~ // great shout
-    LPF ALTER_EFFECT INT_VAR match_target = 1 power = 0 END
-    BUT_ONLY 
 
 	// mold touch no longer needs to ignore center
 	COPY_EXISTING ~idmold.pro~ ~override~
@@ -204,39 +199,10 @@ DEFINE_ACTION_FUNCTION iwd_spell_fixes BEGIN
   COPY_EXISTING ~%CLERIC_SMASHING_WAVE%.spl~ ~override~
                 ~%CLERIC_WHIRLWIND%.spl~     ~override~
     LPF DELETE_EFFECT INT_VAR match_opcode = 142 match_parameter2 = 55 END 
-    
-  // hope should cancel hopelessness and vice versa
-  COPY_EXISTING ~%CLERIC_SYMBOL_OF_HOPELESSNESS%.spl~ ~override~ // Symbol: Hopelessness
-    LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 139 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%WIZARD_EMOTION_HOPE%~ END // remove Emotion: Hope
-    BUT_ONLY  
-
-  // self-visuals and movement speed shouldn't be blocked
-  COPY_EXISTING ~%CLERIC_CIRCLE_OF_BONES%.spl~ ~override~
-    LPF ALTER_EFFECT INT_VAR match_target = 1 power = 0 END
-    BUT_ONLY
-
-  // probability fixes - pared down from longer list to just stuff applicable to spells extracted
 
 	COPY_EXISTING ~%BARD_SONG_KAUDIES%.spl~  ~override~
-                ~%CLERIC_CLOUDBURST%.spl~  ~override~
-	  LPF ALTER_EFFECT INT_VAR match_probability1 = 50 probability1 = 49 END // 50% for protection (kaudies) or damage/visual (cloudburst)
+	  LPF ALTER_EFFECT INT_VAR match_probability1 = 50 probability1 = 49 END // correcting
 
-	COPY_EXISTING ~%BARD_SONG_SIREN%.spl~  ~override~
-	  LPF ALTER_EFFECT INT_VAR match_probability1 = 90 probability1 = 89 END // elven resistance
-	  LPF ALTER_EFFECT INT_VAR match_probability1 = 30 probability1 = 29 END // half-elven resistance
-
-	COPY_EXISTING ~%CLERIC_CAUSE_DISEASE%.spl~  ~override~
-    PATCH_FOR_EACH prob IN 5 10 15 20 25 30 35 45 55 65 75 80 85 90 95 BEGIN // staggered disease probabilities
-	    LPF ALTER_EFFECT INT_VAR silent = 1 match_probability1 = prob probability1 = (prob - 1) END // correcting
-	    LPF ALTER_EFFECT INT_VAR silent = 1 match_probability2 = (prob + 1) probability2 = prob END // correcting
-    END
-
-	COPY_EXISTING ~%CLERIC_SMASHING_WAVE%.spl~  ~override~
-	  LPF ALTER_EFFECT INT_VAR silent = 1 match_probability1 = 5  match_probability2 = 0 probability1 =  4 END // 5% unconscious
-	  LPF ALTER_EFFECT INT_VAR silent = 1 match_probability1 = 30 match_probability2 = 6 probability1 = 29 probability2 = 5 END // 25% stun
-
-	COPY_EXISTING ~%CLERIC_ANIMAL_RAGE%b.spl~  ~override~
-	  LPF ALTER_EFFECT INT_VAR match_probability1 = 5 probability1 = 4 END // 5% berserk
 
 	END
 
