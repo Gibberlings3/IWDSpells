@@ -795,8 +795,7 @@ Zeitaufwand: 6
 Wirkungsbereich: Radius von 10 Metern
 Rettungswurf: Nein
 Dieser Zauber ruft einen magischen Regen hervor, der den Wirkungsbereich tränkt. Jegliche Wesen, die in Kälte oder Feuer leben bzw. diese verwenden, erhalten 2-6 Schadenspunkte pro Runde. Zusätzlich haben alle Wesen im Wirkungsbereich eine 50-prozentige Chance, von Blitzschlägen getroffen werden, die den Wesen einen Schaden von 2-12 Punkten zufügen; dieser Schaden kann durch einen Rettungswurf halbiert werden. Die Wirkung der Zauber "Flammenklinge" und "Flammenschleier" sowie Salamander-Auras werden durch den Zauber "Wolkenbruch" unwirksam.~
-@260=~Schimmelberührung~
-@261=~Schimmelberührung (Veränderung)
+@260=~Schimmelberührung (Veränderung)
 Stufe: 3
 Pflanzenzyklus
 Reichweite: Berührung
@@ -818,6 +817,7 @@ Bei einem erfolgreichen Rettungswurf wird der Schaden folgendermaßen reduziert:
 3. Runde: 1-6 Schadenspunkte
 
 Ab der 2. Runde muss jedes Wesen, das sich nicht weiter als 3 Meter vom Opfer entfernt befindet, pro Runde einen Rettungswurf gegen Zauber ausführen, wenn es nicht selbst von der Schimmelberührung angegriffen werden will. Wesen, die befallen sind, können nicht noch einmal infiziert werden. Der braune Schimmel stirbt schnell ab, wenn der Zauber seine Wirkung verliert.~
+@261=~Schimmelberührung~
 @262=~Sturm-Schutzhülle~
 @263=~Sturm-Schutzhülle (Bannzauber)
 Grad: 3

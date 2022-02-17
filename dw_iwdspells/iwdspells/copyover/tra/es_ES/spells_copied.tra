@@ -1005,8 +1005,7 @@ Tirada de salvación: Ninguna
 DESCRIPCIÓN:
 
 Este conjuro levanta una lluvia mágica que satura el área de efecto. Todas las criaturas que usen o moren en el fuego o en el frío recibirán 2D3 puntos de daño por asalto. Además, todas las criaturas del área tendrán un 50% de probabilidad en cada asalto de ser golpeadas por un relámpago que hace 2D6 de daño, quedando este reducido a la mitad si logran tener éxito en una tirada de salvación. El Aguacero extingue los conjuros Hoja de fuego, Sudario de fuego y el aura de las salamandras.~
-@260=~Toque mohoso~
-@261=~Toque mohoso
+@260=~Toque mohoso
 (Alteración)
 Nivel: 3
 Esfera: Vegetal
@@ -1032,6 +1031,7 @@ Si tiene éxito en la tirada de salvación, el daño se reduce:
 3r asalto: 1D6 puntos de daño
 
 Cada asalto después del primero, la criatura más cercana a la víctima (a 3 metros o menos) debe realizar una tirada de salvación contra conjuros o quedará afectada por el moho a plena potencia. Este proceso continúa hasta que el moho no logra infectar a tiempo a una víctima apropiada. Las criaturas que ya se encuentran bajo los efectos del moho no pueden contraerlo de nuevo. El moho marrón muere una vez expira la duración del conjuro.~
+@261=~Toque mohoso~
 @262=~Caparazón de la tormenta~
 @263=~Caparazón de la tormenta
 (Abjuración)

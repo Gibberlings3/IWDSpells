@@ -923,8 +923,7 @@ Tempo de Lançamento: 6
 Jogada de Salvamento: Nenhuma
 
 Este feitiço invoca uma chuva mágica que satura a área de efeito. Todas as criaturas de frio e fogo sofrem 2d3 pontos de dano mágico por rodada. Além disso, todas as criaturas na área têm 50% de chance por rodada de serem atingidas por raios que causam 2d6 de dano elétrico, com uma Jogada de Salvamento para metade. Lâmina de Fogo, Mortalha de Fogo, e auras de salamandra são extintas por Rebento de Nuvens.~
-@260=~Toque Mofado~
-@261=~Toque Mofado
+@260=~Toque Mofado
 (Alteração)
 
 Nível: 3
@@ -949,6 +948,7 @@ Segunda rodada: 1d6 de dano
 Terceira rodada: 1d6 de dano
 
 A cada rodada após a primeira, a criatura mais próxima dentro de 3 metros da vítima deve ser bem-sucedida em uma Jogada de Salvamento contra Feitiço ou ser infectada pelo mofo em sua força máxima. Esse processo continua até o mofo não conseguir mais infectar um hospedeiro adequado. Criaturas que já estiverem sobre o efeito do mofo não podem contraí-lo de novo. O mofo amarronzado morre assim que o feitiço expira.~
+@261=~Toque Mofado~
 @262=~Carapaça da Tempestade~
 @263=~Carapaça da Tempestade
 (Abjuração)

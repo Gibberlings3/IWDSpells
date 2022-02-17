@@ -808,8 +808,7 @@ Etki Alanı: 12 metre yarıçapında
 Kurtarış Zarı: Yok
 
 Bu büyü, etki alanını sırılsıklam eden büyülü bir yağmur açığa çıkarır. Tüm soğuk ve ateş kullanan/kökenli yaratıklar raunt başına 2z3 puan büyü hasarı alırlar. Ek olarak alandaki tüm yaratıklara her turda %50 ihtimalle yıldırım çarpma olasılığı vardır; çarpan yıldırım 2z6 elektrik hasarı verir, kurtarış zarı bu hasarı yarıya düşürür. Bastıran Sağanak; Alev Kılıcı büyülerini, Alev Kefeni'ni ve semender auralarını söndürür.~
-@260=~Küflü Dokunuş~
-@261=~Küflü Dokunuş 
+@260=~Küflü Dokunuş 
 (Başkalaşım)
 
 Seviye: 3
@@ -834,6 +833,7 @@ Kurtarış zarı başarılı olursa hasar azalır:
 3. raunt: 1z6 hasar
 
 İlkinden sonraki her rauntta, kurbana 3 metre mesafe içindeki en yakın yaratık büyüye karşı kurtarış gerçekleştirmek zorundadır; aksi takdirde küf tam gücüyle ona bulaşır. Küf uygun bir konakçıya bulaşmada başarısız olana dek bu süreç devam eder. Zaten küfün etkisi altında olan yaratıklar bir daha küf kapamazlar. Büyü süresi dolduğunda kahverengi küf çabucak ölür.~
+@261=~Küflü Dokunuş~
 @262=~Fırtına Kabuğu~
 @263=~Fırtına Kabuğu (Sakınma)
 Seviye: 3

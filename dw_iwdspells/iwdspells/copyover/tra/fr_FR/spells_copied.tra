@@ -914,8 +914,7 @@ Zone d'effet : 5,10 mètres de rayon
 Jet de sauvegarde : aucun
 
 Ce sort génère une pluie diluvienne dans la zone d'effet. Toutes les créatures à base de feu ou de froid (ou vivant dans ces éléments) perdent 2d3 points de vie par round. De plus, toutes les créatures comprises dans la zone d'effet ont 50 % de chances par round d'être frappées par la foudre (2d6 points de dégâts, ou deux fois moins en cas de jet de sauvegarde réussi). Les sorts de Lame de feu et de Linceul de flammes, ainsi que l'aura des salamandres, sont éteints par Trombes d'eau.~
-@260=~Moisissure~
-@261=~Moisissure
+@260=~Moisissure
 (Transmutation)
 
 Niveau : 3
@@ -940,6 +939,7 @@ Si le jet de sauvegarde est réussi, les dégâts sont moins importants :
 3e round : 1d6 points
 
 Chaque round après le premier, la plus proche créature (dans un rayon de 3 mètres) doit réussir un jet de sauvegarde sous peine d'être affectée à son tour. Le processus se poursuit jusqu'à ce que la moisissure soit incapable d'infecter un nouvel hôte dans le temps imparti. Les créatures déjà affectées ne peuvent l'être une nouvelle fois. La moisissure brune meurt rapidement au terme de la durée du sort.~
+@261=~Moisissure~
 @262=~Protection anti-tempête~
 @263=~Protection anti-tempêtes
 (Abjuration)

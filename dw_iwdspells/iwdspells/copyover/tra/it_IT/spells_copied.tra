@@ -860,8 +860,7 @@ Area d'effetto: Raggio di 5 metri
 Tiro-salvezza: Nessuno
 
 Questo incantesimo crea una pioggia magica che riempie l'area d'effetto. Tutte le creature del fuoco e del freddo subiscono 2d3 punti di danno da magia per round. In aggiunta a ciò, tutte le creature nell'area hanno una possibilità del 50% per round di essere colpite da fulmini che infliggono 2d6 punti di danno da elettricità, con un tiro-salvezza contro Incantesimi per dimezzare il danno. Gli incantesimi Lama Fiammeggiante, Sudario Fiammeggiante e le auree delle salamandre vengono estinti da Scroscio di Pioggia.~
-@260=~Tocco della Muffa~
-@261=~Tocco della Muffa
+@260=~Tocco della Muffa
 (Alterazione)
 Livello: 3
 Sfera: Vegetale
@@ -885,6 +884,7 @@ Se il tiro-salvezza viene effettuato con successo, i danni vengono ridotti nel s
 3° round: 1d6 punti di danno
 
 Ad ogni round dopo il primo, la creatura più vicina in un raggio di 3 metri dalla vittima deve effettuare con successo un tiro-salvezza contro Incantesimi o essere infettata dalla muffa con la massima potenza. Questo processo continua fino a quando la muffa non fallisce nell'infettare una vittima adatta in tempo. Le creature già soggette agli effetti della muffa non possono contrarla di nuovo. La muffa marrone muore rapidamente una volta che l'incantesimo è terminato.~
+@261=~Tocco della Muffa~
 @262=~Guscio di Tempesta~
 @263=~Guscio di Tempesta
 (Scongiurazione)

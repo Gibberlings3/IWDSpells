@@ -804,8 +804,7 @@ Rozsah: okruh 9 metrů
 Hod na záchranu: žádný
 
 Toto kouzlo postihne danou oblast magickým deštěm. Všechny bytosti chladu a používající či obývající oheň utrpí v každém kole zranění ve výši 2k3 životů. K tomu mají všichni tvorové v kritickém okruhu 50% pravděpodobnost, že budou zasažení elektrickými výboji, způsobujícími zranění za 2k6 životů (při úspěšném záchranném hodu polovic). Kouzla "ohnivý meč", "plamenný rubáš" a aury salamandrů budou průtrží mračen uhašeny.~
-@260=~Dotyk plísně~
-@261=~Dotyk plísně (proměna)
+@260=~Dotyk plísně (proměna)
 Úroveň: 3
 Sféra: rostliny
 Dosah: dotyk
@@ -827,6 +826,7 @@ Při úspěšném záchranném hodu bude utrpěné zranění sníženo:
 3. kolo: zranění 1k6
 
 V každém kole krom prvního si musí bytost nejblíže k oběti v okruhu tří metrů hodit na záchranu proti kouzlu, nebo bude plísní infikována s plnou účinností. Tento proces pokračuje, dokud se plísni nepodaří včas zasáhnout dalšího nositele. Stvoření, která již jejímu působení podléhají, nemohou být znovu nakažena. Zelená plíseň rychle odumírá, když vyprší stanovená doba.~
+@261=~Dotyk plísně~
 @262=~Bouřná schránka~
 @263=~Bouřná schránka (ochrana)
 Úroveň: 3

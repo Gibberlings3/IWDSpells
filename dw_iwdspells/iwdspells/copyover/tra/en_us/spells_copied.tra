@@ -923,8 +923,7 @@ Area of Effect: 17-ft. radius
 Saving Throw: None
 
 This spell brings forth a magical rain that saturates the area of effect. All cold- and fire-dwelling creatures take 2d3 points of magic damage per round. In addition, all creatures in the area have a 50% chance per round of being struck by bolts of lightning that deal 2d6 electrical damage, with a Save vs. Spell for half. Flame Blade, Shroud of Flame, and salamander auras are extinguished by Cloudburst.~
-@260=~Mold Touch~
-@261=~Mold Touch
+@260=~Mold Touch
 (Alteration)
 
 Level: 3
@@ -949,6 +948,7 @@ If the Saving Throw is successful, the damage is reduced as follows:
 3rd round: 1d6 damage
 
 Each round after the first, the nearest creature within 10 ft. of the victim must make a Save vs. Spell or be infected by the mold at full strength. This process continues until the mold fails to infect a suitable host in time. Creatures already under the effects of the mold cannot contract it again. The brown mold quickly dies once the spell expires.~
+@261=~Mold Touch~
 @262=~Storm Shell~
 @263=~Storm Shell
 (Abjuration)

@@ -110,7 +110,7 @@ Czas rzucania: 4
 Obszar działania: 1 istota
 Rzut obronny: neguje
 
-Czar ten sprawia, że krew wybranej istoty wybucha żywym ogniem, sprawiając, że otrzymuje ona 3k4 obrażeń co rundę, a także wpada w berserk będący wynikiem odczuwanego bólu. Ofiara musi co rundę wykonywać rzut obronny przeciw czarom; udany pozwala uniknąć obrażeń oraz wpadnięcia w szał. Zaklęcie to nie działa na nieumarłych oraz istoty pozaplanarne nie posiadające krwi (takie jak żywiołaki). Jeśli stworzenie jest odporne na ogień, odporność ta obniży lub całkowicie zredukuje obrażenia otrzymane w wyniku działania tego czaru.~
+Czar ten sprawia, że krew wybranej istoty wybucha żywym ogniem, sprawiając, że otrzymuje ona 3k4 obrażeń co rundę, a także wpada w berserk będący wynikiem odczuwanego bólu. Ofiara musi co rundę wykonywać rzut obronny przeciw czarom; udany pozwala uniknąć obrażeń oraz wpadnięcia w szał. Zaklęcie to nie działa na nieumarłych oraz istoty pozaplanarne nieposiadające krwi (takie jak żywiołaki). Jeśli stworzenie jest odporne na ogień, odporność ta obniży lub całkowicie zredukuje obrażenia otrzymane w wyniku działania tego czaru.~
 @41=~Emocje: odwaga~
 @42=~Emocje: odwaga
 (Zaczarowania/Zauroczenia)
@@ -170,7 +170,7 @@ Czas rzucania: 4
 Obszar działania: w promieniu 0,5 metra
 Rzut obronny: specjalny
 
-Zaklęcie to powołuje do istnienia połyskującą kulę magicznej energii, która wystrzeliwuje z dłoni czarodzieja, trafiając bezbłędnie ofiarę. Można tutaj dostrzec duże podobieństwo do czaru Magiczny pocisk. Czarodziej tworzy jeden pocisk na 7. poziomie oraz kolejny pocisk, co każde trzy poziomy po poziomie siódmym (czyli dwa pociski na 10. poziomie, trzy na 13. poziomie, cztery na 16. poziomie itd., aż do maksymalnej ilości siedmiu pocisków na 25. poziomie. Każdy pocisk zadaje ofierze 2k4 obrażeń, a następnie wywołuje falę uderzeniową o promieniu 0,5 metra, zadającą 1 obrażenie na poziom czarującego. Przykładowo, czarodziej 12. poziomu może stworzyć dwa pociski, z których każdy zadaje 2k4 +12 magicznych obrażeń. Zaatakowane istoty mogą wykonać rzut obronny przeciw czarom, aby uniknąć obrażeń pochodzących od fali uderzeniowej, lecz nie od samego pocisku. Zaklęcie maga 1. poziomu o nazwie Tarcza unieszkodliwia pociski mocy, w tym obrażenia wywołane falą udrzeniową.~
+Zaklęcie to powołuje do istnienia połyskującą kulę magicznej energii, która wystrzeliwuje z dłoni czarodzieja, trafiając bezbłędnie ofiarę. Można tutaj dostrzec duże podobieństwo do czaru Magiczny pocisk. Czarodziej tworzy jeden pocisk na 7. poziomie oraz kolejny pocisk, co każde trzy poziomy po poziomie siódmym (czyli dwa pociski na 10. poziomie, trzy na 13. poziomie, cztery na 16. poziomie itd., aż do maksymalnej ilości siedmiu pocisków na 25. poziomie. Każdy pocisk zadaje ofierze 2k4 obrażeń, a następnie wywołuje falę uderzeniową o promieniu 0,5 metra, zadającą 1 obrażenie na poziom czarującego. Przykładowo, czarodziej 12. poziomu może stworzyć dwa pociski, z których każdy zadaje 2k4 +12 magicznych obrażeń. Zaatakowane istoty mogą wykonać rzut obronny przeciw czarom, aby uniknąć obrażeń pochodzących od fali uderzeniowej, lecz nie od samego pocisku. Zaklęcie maga 1. poziomu o nazwie Tarcza unieszkodliwia pociski mocy, w tym obrażenia wywołane falą uderzeniową.~
 @51=~Pociski mocy Mordenkainena~
 @52=~Okrzyk~
 @53=~Okrzyk
@@ -196,7 +196,7 @@ Czas rzucania: 4
 Obszar działania: w promieniu 1,5 metra
 Rzut obronny: specjalny
 
-Czar ten przywołuje kulę migoczącego szmaragdowego kwasu, którą można skierować w stronę dowolnego celu znajdującego się w zasięgu wzroku. Kiedy kula dotrze do ofiary, wybucha, oblewając ją żrącym kwasem. Istota otrzymuje 1k4 obrażeń od kwasu na poziom czarującego; maksymalnie 12k4 obrażeń. Po początkowych obrażeniach, ofiara musi wykonać rzut obronny przeciw czarom celem uniknięcia kolejnych obrażeń. Jeśli zakończy się on niepowodzeniem, istota otrzymuje obrażenia od kwasu w kolejnych rundach, lecz z każdą rundą maleją one o 2 kostki. Przykładowo, czarodziej 8. poziomu zadaje 8k4 obrażeń w pierwszej rundzie, 6k4 w drugiej rundzie, 4k4 w trzeciej, 2k4 w czwartej, a działanie czaru kończy się w rundzie piątej. W każdej rundzie ofiara ataku może wykonać rzut obronny przeciw czarom, aby uniknąć dalszych obrażeń. 
+Czar ten przywołuje kulę migoczącego szmaragdowego kwasu, którą można skierować w stronę dowolnego celu znajdującego się w zasięgu wzroku. Kiedy kula dotrze do ofiary, wybucha, oblewając ją żrącym kwasem. Istota otrzymuje 1k4 obrażeń od kwasu na poziom czarującego; maksymalnie 12k4 obrażeń. Po początkowych obrażeniach ofiara musi wykonać rzut obronny przeciw czarom celem uniknięcia kolejnych obrażeń. Jeśli zakończy się on niepowodzeniem, istota otrzymuje obrażenia od kwasu w kolejnych rundach, lecz z każdą rundą maleją one o 2 kostki. Przykładowo, czarodziej 8. poziomu zadaje 8k4 obrażeń w pierwszej rundzie, 6k4 w drugiej rundzie, 4k4 w trzeciej, 2k4 w czwartej, a działanie czaru kończy się w rundzie piątej. W każdej rundzie ofiara ataku może wykonać rzut obronny przeciw czarom, aby uniknąć dalszych obrażeń. 
 
 Kula z witriolem rozpryskuje kwas w promieniu 1,5 metra wokół istoty będącej celem ataku. Wszystkie stworzenia znajdujące się w obszarze rozprysku muszą wykonać rzut obronny przeciw polimorfii/paraliżowi, bądź otrzymają 1k4 obrażeń na każde pięć poziomów czarującego. Rozprysk nie powoduje ciągłych obrażeń.~
 @57=~Całun płomieni~
@@ -237,7 +237,7 @@ Czas rzucania: 5
 Obszar działania: rzucający czar
 Rzut obronny: brak
 
-Czar ten tworzy dziewięć strzałek, które mogą być użyte przez czarującego. Nie można ich odłożyć dopóki nie upłynie czas działania zaklęcia. Powstałe strzałki posiadają umagicznienie +3, zadają 1k4 +3 obrażeń od pocisków, a trafiona nimi istota musi wykonać rzut obronny przeciw śmierci lub otrzyma 2k6 magicznych obrażeń, a jej Siła zostanie obniżona o 3 na okres pięciu rund. Utrata siły nie jest kumulatywna, a nieudany rzut obronny nie spowoduje, że będzie ona trwała dłużej. Biegłość czarującego w posługiwaniu się strzałkami (lub jej brak) nie wpływa na szansę trafienia w cel.~
+Czar ten tworzy dziewięć strzałek, które mogą być użyte przez czarującego. Nie można ich odłożyć, dopóki nie upłynie czas działania zaklęcia. Powstałe strzałki posiadają umagicznienie +3, zadają 1k4 +3 obrażeń od pocisków, a trafiona nimi istota musi wykonać rzut obronny przeciw śmierci lub otrzyma 2k6 magicznych obrażeń, a jej Siła zostanie obniżona o 3 na okres pięciu rund. Utrata siły nie jest kumulatywna, a nieudany rzut obronny nie spowoduje, że będzie ona trwała dłużej. Biegłość czarującego w posługiwaniu się strzałkami (lub jej brak) nie wpływa na szansę trafienia w cel.~
 @66=~Szkielet~
 @67=~Szkielet~
 @68=~Pożeracz dusz~
@@ -287,7 +287,7 @@ Czas rzucania: 7
 Obszar działania: w promieniu 2 metrów
 Rzut obronny: specjalny
 
-Czar ten pozbawia oddechu wszystkie istoty znajdujące się w obszarze jego działania. Istoty nie muszące oddychać są niepodatne na jego wpływ. Duszące się stworzenia otrzymują karę -4 do Klasy Pancerza, -4 do testów trafienia i -6 do Zręczności. Ponadto, mogą wykonywać w ciągu rundy o jeden atak mniej, ich prędkość poruszania zostaje zmniejszona o połowę, a także otrzymują co rundę 4k8 magicznych obrażeń. Rzut obronny neguje wszystkie efekty, poza 2k8 obrażeniami otrzymywanymi przez jedną rundę. Efekt zaczyna słabnąć w chwili, w której istota opuści obszar działania czaru, aczkolwiek może minąć runda, zanim złapie oddech.~
+Czar ten pozbawia oddechu wszystkie istoty znajdujące się w obszarze jego działania. Istoty niemuszące oddychać są niepodatne na jego wpływ. Duszące się stworzenia otrzymują karę -4 do Klasy Pancerza, -4 do testów trafienia i -6 do Zręczności. Ponadto, mogą wykonywać w ciągu rundy o jeden atak mniej, ich prędkość poruszania zostaje zmniejszona o połowę, a także otrzymują co rundę 4k8 magicznych obrażeń. Rzut obronny neguje wszystkie efekty, poza 2k8 obrażeniami otrzymywanymi przez jedną rundę. Efekt zaczyna słabnąć w chwili, w której istota opuści obszar działania czaru, aczkolwiek może minąć runda, zanim złapie oddech.~
 @76=~Zasłonięcie umysłu~
 @77=~Zasłonięcie umysłu
 (Odrzucanie)
@@ -643,8 +643,8 @@ Gniew Malavona to zaklęcie stworzone przez czarownika z rasy mrocznych elfów o
 @194=~No dobrze, to może coś do picia?~
 @195=~Wydaje mi się, że może to mieć sens, ale czy nie lepiej byłoby budować nadzieję na jakichś duchowych przesłankach, zamiast przygnębiającego wyjaśniania wojowniczej natury człowieka?~
 @196=~Oko kamienia blokuje działanie efektu, po czym zanika.~
-@197=~Siedem oczu~
-@198=~Siedem oczu
+@197=~Siedmioro oczu~
+@198=~Siedmioro oczu
 (Odrzucanie)
 
 Poziom: 7
@@ -656,19 +656,19 @@ Rzut obronny: brak
 
 Zaklęcie to powołuje do istnienia siedem magicznych kul w kształcie oka, które unoszą się nad głową maga, tworząc coś w rodzaju pierścienia. Każde oko posiada zdolności obronne i ofensywne, ale z chwilą użycia traci swą moc. Każda kolejna próba zastosowania tego czaru nie powiedzie się, jeżeli czas trwania poprzedniego zaklęcia nie dobiegł końca, bez względu na to, czy pozostały jeszcze jakieś magiczne oczy, czy też nie. Poniżej przedstawiona została charakterystyka każdego oka:
 
-Oko umysłu – chroni rzucającego przed przez atakami mentalnymi, takimi jak zauroczenie, emocje, czy strach. Może być wykorzystane jako 1. poziomowy czar maga Zauroczenie osoby, sprawiając że jedna humanoidalna istota znajdzie się przez jedną turę pod kontrolą rzucającego (rzut obronny przeciw czarom neguje).
+Oko umysłu – chroni rzucającego przed atakami mentalnymi, takimi jak zauroczenie, emocje, czy strach. Może być wykorzystane jako 1. poziomowy czar maga o nazwie Zauroczenie osoby, sprawiając, że jedna humanoidalna istota znajdzie się przez jedną turę pod kontrolą rzucającego (rzut obronny przeciw czarom neguje).
 
-Oko miecza – odbija najbliższy atak fizyczny skierowany na rzucającego. Może być wykorzystane jako 1. poziomowy czar maga Magiczny pocisk, tworząc maksymalnie pięć pocisków (jeden na każde dwa poziomy doświadczenia powyżej pierwszego), z których każdy zadaje 1k4 +1 magicznych obrażeń.
+Oko miecza – odbija najbliższy atak fizyczny skierowany na rzucającego. Może być wykorzystane jako 1. poziomowy czar maga o nazwie Magiczny pocisk, tworząc maksymalnie pięć pocisków (jeden na każde dwa poziomy doświadczenia powyżej pierwszego), z których każdy zadaje 1k4 +1 magicznych obrażeń.
 
-Oko maga – pochłania jednorazowo obrażenia zadane przez ogień, elektryczność, zimno lub kwas. Może być również wykorzystane jako 3. poziomowy czar maga Błyskawica, zadając 1k6 obrażeń od elektryczności na poziom (maksymalnie 10k6) wszystkim istotom stojącym jej na drodze.
+Oko maga – pochłania jednorazowo obrażenia zadane przez ogień, elektryczność, zimno lub kwas. Może być również wykorzystane jako 3. poziomowy czar maga o nazwie Błyskawica, zadając 1k6 obrażeń od elektryczności na poziom (maksymalnie 10k6) wszystkim istotom stojącym jej na drodze.
 
-Oko jadowe – zatrzymuje jeden atak lub efekt, który mógłby spowodować zatrucie rzucającego. Może być również wykorzystane jako 4. poziomowy czar kapłański Trucizna, zadając jednej istocie 20 obrażeń w przeciągu dwudziestu sekund (rzut obronny przeciw truciznom neguje).
+Oko jadowe – zatrzymuje jeden atak lub efekt, który mógłby spowodować zatrucie rzucającego. Może być również wykorzystane jako 4. poziomowy czar kapłański o nazwie Trucizna, zadając jednej istocie 20 obrażeń w przeciągu dwudziestu sekund (rzut obronny przeciw truciznom neguje).
 
-Oko duchowe – blokuje jeden magiczny atak powodujący natychmiastową śmierć (Zaklęcie śmierci, Palec śmierci, Słowo mocy: giń, Zabijanie żyjących, Zniszczenie). Zamiast tego, czarodziej może wykorzystać drzemiącą w oku moc jako 2. poziomowy czar maga Promień osłabienia, obniżając Siłę celu o 5 (rzut obronny przeciw czarom neguje).
+Oko duchowe – blokuje jeden magiczny atak powodujący natychmiastową śmierć (Zaklęcie śmierci, Palec śmierci, Słowo mocy: giń, Zabijanie żyjących, Zniszczenie). Zamiast tego, czarodziej może wykorzystać drzemiącą w oku moc jako 2. poziomowy czar maga o nazwie Promień osłabienia, obniżając Siłę celu o 5 (rzut obronny przeciw czarom neguje).
 
-Oko hartu ducha – blokuje jeden efekt powodujący ogłoszenie, głuchotę, ślepotę lub ciszę. Może być zamiast tego wykorzystane jako 4. Poziomowy czar maga Okrzyk, zadając 4k6 magicznych obrażeń i wywołując głuchotę u istot znajdujących się na obszarze stożka o promieniu 15 metrów (połowa obrażeń i uniknięcie głuchoty po rzucie obronnym przeciw czarom).
+Oko hartu ducha – blokuje jeden efekt powodujący ogłoszenie, głuchotę, ślepotę lub ciszę. Może być zamiast tego wykorzystane jako 4. Poziomowy czar maga o nazwie Okrzyk, zadając 4k6 magicznych obrażeń i wywołując głuchotę u istot znajdujących się na obszarze stożka o promieniu 15 metrów (połowa obrażeń i uniknięcie głuchoty po rzucie obronnym przeciw czarom).
 
-Oko kamienia – chroni rzucającego przed pojedynczym atakiem powodującym petryfikację. Może być również wykorzystane jako 3. poziomowy czar maga Unieruchomienie osoby, uniemożliwiając poruszanie się humanoidom o rozmiarze człowieka lub mniejszym przez jedną rundę/poziom (rzut obronny przeciw czarom neguje).~
+Oko kamienia – chroni rzucającego przed pojedynczym atakiem powodującym petryfikację. Może być również wykorzystane jako 3. poziomowy czar maga o nazwie Unieruchomienie osoby, uniemożliwiając poruszanie się humanoidom o rozmiarze człowieka lub mniejszym przez jedną rundę/poziom (rzut obronny przeciw czarom neguje).~
 @199=~Nie możesz rzucić tego zaklęcia, póki nie skończysz rzucać obecnego czaru.~
 @200=~Oko umysłu~
 @201=~Oko umysłu
@@ -786,7 +786,7 @@ Czas rzucania: 5
 Obszar działania: 1 istota
 Rzut obronny: specjalny
 
-Czar ten tworzy częściowo eteryczną lancę o srebrnym odcieniu i kształcie rogu jednorożca. Gdy czarujący namierzy ofiarę, lanca natychmiast wystrzeli, zadając 3k6 obrażeń kłutych (połowę po rzucie obronnym przeciw czarom). Mimo, iż po uderzeniu lanca ulega rozproszeniu, pozostawia wokół ofiary srebrzystą poświatę, czyniąc ją tym samym łatwym celem. Ofiara otrzymuje w związku z tym karę -2 do Klasy Pancerza na trzy rundy.~
+Czar ten tworzy częściowo eteryczną lancę o srebrnym odcieniu i kształcie rogu jednorożca. Gdy czarujący namierzy ofiarę, lanca natychmiast wystrzeli, zadając 3k6 obrażeń kłutych (połowę po rzucie obronnym przeciw czarom). Mimo iż po uderzeniu lanca ulega rozproszeniu, pozostawia wokół ofiary srebrzystą poświatę, czyniąc ją tym samym łatwym celem. Ofiara otrzymuje w związku z tym karę -2 do Klasy Pancerza na trzy rundy.~
 @234=~Otoczony srebrzystą poświatą (kara -2 do KP)~
 @235=~Szpony bestii~
 @236=~Szpony bestii~
@@ -914,8 +914,7 @@ Obszar działania: w promieniu 5,5 metra
 Rzut obronny: brak
 
 Czar ten sprowadza na wybrany obszar magiczny deszcz. Wszystkie stworzenia związane z zimnem i ogniem otrzymują 2k3 magicznych obrażeń na rundę. Ponadto, wszystkie istoty znajdujące się wewnątrz obszaru działania zaklęcia mają 50% szans na to, że zostaną trafione błyskawicą, zadającą 2k6 obrażeń od elektryczności (połowa obrażeń po rzucie obronnym przeciw czarom). Zaklęcia Płomienne ostrze i Całun płomieni, a także aury salamander zostają ugaszone pod wpływem Oberwania chmury.~
-@260=~Dotyk pleśni~
-@261=~Dotyk pleśni 
+@260=~Dotyk pleśni 
 (Przemiany)
 
 Poziom: 3
@@ -939,7 +938,8 @@ Jeżeli rzut obronny się powiedzie, wówczas obrażenia ulegają zmniejszeniu:
 2. runda: 1k6 obrażeń
 3. runda: 1k6 obrażeń
 
-Po upłynięciu pierwszej rundy, w każdej następnej istota znajdująca się w odległości 3 metrów od ofiary musi wykonać rzut obronny przeciwko czarom lub zostanie zarażona pleśnią. Sytuacja taka powtarza się do chwili, aż pleśń nie zdąży na czas zakazić nowego gospodarza, tracąc tym samym swoje właściwości. Istoty znajdujące się już pod wpływem pleśni nie mogą się nią zarazić ponownie. Po upłynięciu czasu działania zaklęcia, brązowa pleśń szybko obumiera.~
+Po upłynięciu pierwszej rundy, w każdej następnej istota znajdująca się w odległości 3 metrów od ofiary musi wykonać rzut obronny przeciwko czarom lub zostanie zarażona pleśnią. Sytuacja taka powtarza się do chwili, aż pleśń nie zdąży zakazić nowego gospodarza, tracąc tym samym swoje właściwości. Istoty znajdujące się już pod wpływem pleśni nie mogą się nią zarazić ponownie. Po upłynięciu czasu działania zaklęcia, brązowa pleśń szybko obumiera.~
+@261=~Dotyk pleśni~
 @262=~Osłona przed burzą~
 @263=~Osłona przed burzą 
 (Odrzucanie)
@@ -952,7 +952,7 @@ Czas rzucania: 6
 Obszar działania: rzucający czar
 Rzut obronny: brak
 
-Dzięki temu zaklęciu, czarujący zostaje otoczony kulą energii, która porusza się wraz z nim, zwiększając jego odporność na ogień, zimno i elektryczność do 50%.~
+Dzięki temu zaklęciu czarujący zostaje otoczony kulą energii, która porusza się wraz z nim, zwiększając jego odporność na ogień, zimno i elektryczność do 50%.~
 @264=~Zadawanie średnich ran~
 @265=~Zadawanie średnich ran
 (Nekromancja)
@@ -1007,7 +1007,7 @@ Czas rzucania: 9
 Obszar działania: pole widzenia rzucającego czar
 Rzut obronny: 1/2
 
-Ładunek statyczny jest podobny do czaru Wezwanie błyskawic, z tym, że może być on rzucany wewnątrz budynków. Czar ten pozwala rzucającemu na stworzenie ładunku statycznego, wokół dowolnej istoty znajdującej się w obszarze jego działania, zadając jej tym samym 2k8 obrażeń od elektryczności oraz dodatkowo 1k8 obrażeń na poziom czarującego. Ładunek zadaje obrażenia raz na turę przez cały czas działania zaklęcia.~
+Ładunek statyczny jest podobny do czaru Wezwanie błyskawic, z tym że może być on rzucany wewnątrz budynków. Czar ten pozwala rzucającemu na stworzenie ładunku statycznego, wokół dowolnej istoty znajdującej się w obszarze jego działania, zadając jej tym samym 2k8 obrażeń od elektryczności oraz dodatkowo 1k8 obrażeń na poziom czarującego. Ładunek zadaje obrażenia raz na turę przez cały czas działania zaklęcia.~
 @273=~Recytacja~
 @274=~Recytacja 
 (Odrzucanie, Inwokacje/Wywoływanie)
@@ -1033,7 +1033,7 @@ Czas rzucania: 7
 Obszar działania: 1 istota
 Rzut obronny: brak
 
-Czar ten działa jedynie na postać gracza lub sprzymierzone z nią istoty. Po jego rzuceniu, wyznaczona istota wpada w szał, atakując nieustannie najbliższe stworzenie, dopóki nie padnie ono martwe, a następnie wybiera kolejny cel. Będąc pod wpływem Łaknienia krwi staje się ona niewrażliwa na zauroczenie, sen, strach, unieruchomienie, ogłuszenie, zamęt, emocje, zaklęcia symboli i podobne efekty. Ponadto, otrzymuje premię +2 do testów trafienia, +3 do testów obrażeń, +2 do Siły, +10 do maksymalnej wartości punktów życia, a także +2 do prędkości poruszania się. Czar ten ma jednakże kilka wad: na czas jego działania punkty życia będącej pod jego wpływem istoty są zakryte, a sama istota nie może korzystać z dobrodziejstw żadnego efektu, który by je przywracał. Po zakończeniu działania czaru, istota jest zmęczona, a jej Siła spada do 3 na okres dwóch tur. Czar Łaknienie krwi nie działa na stworzenia o charakterze praworządnym, jak również nie może być przez nie używany.~
+Czar ten działa jedynie na postać gracza lub sprzymierzone z nią istoty. Po jego rzuceniu wyznaczona istota wpada w szał, atakując nieustannie najbliższe stworzenie, dopóki nie padnie ono martwe, a następnie wybiera kolejny cel. Będąc pod wpływem Łaknienia krwi, staje się ona niewrażliwa na zauroczenie, sen, strach, unieruchomienie, ogłuszenie, zamęt, emocje, zaklęcia symboli i podobne efekty. Ponadto, otrzymuje premię +2 do testów trafienia, +3 do testów obrażeń, +2 do Siły, +10 do maksymalnej wartości punktów życia, a także +2 do prędkości poruszania się. Czar ten ma jednakże kilka wad: na czas jego działania punkty życia będącej pod jego wpływem istoty są zakryte, a sama istota nie może korzystać z dobrodziejstw żadnego efektu, który by je przywracał. Po zakończeniu działania czaru istota jest zmęczona, a jej Siła spada do 3 na okres dwóch tur. Czar Łaknienie krwi nie działa na stworzenia o charakterze praworządnym, jak również nie może być przez nie używany.~
 @277=~Uzdrowienie~
 @278=~Ogłuszenie~
 @279=~Chmura morowego powietrza~
