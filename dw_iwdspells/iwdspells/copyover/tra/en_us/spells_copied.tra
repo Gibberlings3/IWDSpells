@@ -843,7 +843,7 @@ Saving Throw: None
 Prayer bestows favor on the priest and <PRO_HISHER> allies, and curses their enemies. All attacks, damage, and Saving Throws by friendly characters gain a +1 bonus, while enemy attacks, damage rolls, and saves get a -1 penalty. Any creatures within the area of effect when the spell is cast will continue to be affected by the spell when they leave the area, so if the warriors want to chase down that fleeing goblin, the effects of the Prayer will follow them.~
 @246=~Cause Disease~
 @247=~Cause Disease
-(Abjuration)
+(Necromancy)
 
 Level: 3
 Sphere: Healing
@@ -1253,10 +1253,10 @@ Sphere: Guardian
 Range: Visual range of the caster
 Duration: 11 turns
 Casting Time: 3
-Area of Effect: 12-ft. radius
+Area of Effect: 15-ft. radius
 Saving Throw: Neg.
 
-Symbol, Pain is a powerful enchantment that allows the priest to inscribe a symbol on the ground or any other surface. The symbol will remain there until someone comes too close, at which point it will explode, causing all those within the area of effect to make a Saving Throw vs. Spell. Those who fail their Saving Throws are overwhelmed by pain, suffering a -4 penalty to their attack rolls, a -2 penalty to their Dexterity scores, and a -2 penalty to their Armor Class.~
+All enemies within 15 ft. of the symbol of pain at the moment it is invoked must make a Save vs. Spell. Those who fail their Saving Throws are overwhelmed by pain, suffering a -4 penalty to their attack rolls, a -2 penalty to their Dexterity scores, and a -2 penalty to their Armor Class.~
 @315=~Wracking Pains~
 @316=~Symbol, Hopelessness~
 @317=~Symbol, Hopelessness
