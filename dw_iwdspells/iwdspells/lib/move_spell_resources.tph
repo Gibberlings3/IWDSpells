@@ -157,6 +157,7 @@ BEGIN
 						LAF log_this INT_VAR repeat=0 STR_VAR path="%resource_loc%" file="%prefix%_proj.txt" input="%resref% %int%" END
 						ACTION_IF !VARIABLE_IS_SET $do_not_copy("%resource%") BEGIN
 							COPY_EXISTING "%resource%" "%resource_loc%/%spell%"
+								LPF strref_apply STR_VAR function=log_strref END
 						END
 					END
 				END

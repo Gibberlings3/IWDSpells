@@ -24,9 +24,9 @@ BEGIN
 		LPF strref_struct STR_VAR function END
 		LPF strref_script STR_VAR function END // no need to decompile, scripts in dlg files aren't compiled
 	END
-	bam wav wed bmp vvc vef pro BEGIN // no strrefs in these
+	bam wav wed bmp vvc vef BEGIN // no strrefs in these
 	END
-	are cre eff itm spl sto BEGIN
+	are cre eff itm spl sto pro BEGIN
 		LPF strref_struct STR_VAR function END
 	END
 	DEFAULT

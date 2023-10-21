@@ -5,37 +5,38 @@
 
 Wszyscy sojusznicy znajdujący się w zasięgu 10 metrów otrzymują premię +1 do testów trafienia, obrażeń oraz wszystkich rzutów obronnych.~
 @4=~Ballada o Trzech Bohaterach: Premie do walki~
-@5=~Opowieść o Curranie Mocnym Sercu~
-@6=~„Opowieść o Curranie Mocnym Sercu”
+@5=~<NO TEXT>~
+@6=~Opowieść o Curranie Mocnym Sercu~
+@7=~„Opowieść o Curranie Mocnym Sercu”
 
 Wszyscy sojusznicy znajdujący się w zasięgu 10 metrów zyskują na czas trwania pieśni niewrażliwość na strach, a ponadto każdy działający na nich w danej chwili efekt związany ze strachem zostaje natychmiast zneutralizowany.~
-@7=~Opowieść o Curranie Mocnym Sercu: Odporność na strach~
-@8=~Panika~
-@9=~Melodia Tymory~
-@10=~„Melodia Tymory”
+@8=~Opowieść o Curranie Mocnym Sercu: Odporność na strach~
+@9=~Panika~
+@10=~Melodia Tymory~
+@11=~„Melodia Tymory”
 
 Wszyscy sojusznicy znajdujący się w zasięgu 10 metrów otrzymują premię +1 do Szczęścia, +3 do rzutów obronnych, +10 do Wiedzy, a także +10% do wszystkich zdolności złodziejskich.~
-@11=~Melodia Tymory: Premie do Szczęścia i Umiejętności~
-@12=~Pieśń Kaudich~
-@13=~„Pieśń Kaudich”
+@12=~Melodia Tymory: Premie do Szczęścia i Umiejętności~
+@13=~Pieśń Kaudich~
+@14=~„Pieśń Kaudich”
 
 Wszyscy sojusznicy znajdujący się w zasięgu 10 metrów otrzymują 50% szans na zniwelowanie efektów działania takich czarów jak: Cisza, Krzyk, Wielki krzyk, Rozkaz, Potężniejszy rozkaz lub innych ataków opartych na dźwięku.~
-@14=~Pieśń Kaudich: Odporność na ataki oparte na dźwięku~
-@15=~Zaklęcie nie zadziałało~
-@16=~Tęsknota Syreny~
-@17=~„Tęsknota Syreny”
+@15=~Pieśń Kaudich: Odporność na ataki oparte na dźwięku~
+@16=~Zaklęcie nie zadziałało~
+@17=~Tęsknota Syreny~
+@18=~„Tęsknota Syreny”
 
 Wszyscy wrogowie znajdujący się w promieniu 10 metrów muszą wykonać rzut obronny przeciw czarom lub zostaną oczarowani, dzięki czemu nie będą w stanie podjąć żadnej akcji, dopóki nie upłynie jedna runda lub nie otrzymają obrażeń.~
-@18=~Tęsknota Syreny: Oczarowuje istoty~
-@19=~Ogłuszony~
-@20=~Oczarowany~
-@21=~Pieśń wojenna Sith~
-@22=~„Pieśń wojenna Sith”
+@19=~Tęsknota Syreny: Oczarowuje istoty~
+@20=~Ogłuszony~
+@21=~Oczarowany~
+@22=~Pieśń wojenna Sith~
+@23=~„Pieśń wojenna Sith”
 
 Wszyscy sojusznicy znajdujący się w promieniu 10 metrów otrzymują premię +2 do Klasy Pancerza, +10% do odporności na obrażenia sieczne, kłute, obuchowe oraz pociski, a ponadto zyskują zdolność regeneracji 2 punktów życia na rundę.~
-@23=~Pieśń wojenna Sith: Premie do Klasy Pancerza i Regeneracja~
-@24=~Lawina śnieżnych kul Snilloca~
-@25=~Lawina śnieżnych kul Snilloca 
+@24=~Pieśń wojenna Sith: Premie do Klasy Pancerza i Regeneracja~
+@25=~Lawina śnieżnych kul Snilloca~
+@26=~Lawina śnieżnych kul Snilloca 
 (Wywoływanie)
 
 Poziom: 2
@@ -46,10 +47,10 @@ Obszar działania: w promieniu 5 metrów
 Rzut obronny: 1/2
 
 Po rzuceniu tego zaklęcia, z wybranego miejsca, znajdującego się w obrębie działania czaru, wystrzeliwuje chmara kul śniegowych. Trafiają one we wszystko, co znajduje się w zasięgu funkcjonowania efektu, zadając 1k3 obrażeń od zimna na poziom czarującego, aż do maksymalnie 8k3 obrażeń na 8. poziomie. Przeciw istotom posługującym się ogniem lub zrodzonym z ognia, czar ten zadaje 1k6 obrażeń na poziom czarującego, aż do maksymalnie 8k6 obrażeń na 8. poziomie.~
-@26=~Laska mocy~
 @27=~Laska mocy~
 @28=~Laska mocy~
-@29=~Laska mocy
+@29=~Laska mocy~
+@30=~Laska mocy
 (Wywoływanie)
 
 Poziom: 2
@@ -60,8 +61,8 @@ Obszar działania: rzucający czar
 Rzut obronny: brak
 
 Zaklęcie to tworzy w ręku czarującego laskę mocy. Zadaje ona 1k6 obrażeń i jest traktowana jak magiczna broń +1, na potrzeby określenia istot, które może zranić. Broń ta należy do kategorii kijów, tak więc jeśli czarujący nie posiada biegłości w walce tym typem broni, wówczas Laska mocy używana jest z modyfikatorem ujemnym. Broń ta posiada również moc wysysania z ofiary 1k2 punktów życia po każdym trafieniu. Punkty te są dodawane do puli czarującego, ale mogą one jedynie uleczyć odniesione przez niego obrażenia i nie mogą podnieść ilości punktów życia ponad ustalone dla niego maksimum.~
-@30=~Zwinność kota~
-@31=~Zwinność kota
+@31=~Zwinność kota~
+@32=~Zwinność kota
 (Przemiany)
 
 Poziom: 2
@@ -72,9 +73,9 @@ Obszar działania: 1 istota
 Rzut obronny: brak
 
 Po rzuceniu tego zaklęcia Zręczność wskazanej istoty zostaje w magiczny sposób zwiększona o ilość zależną od jej klasy. Łotrzykowie otrzymują 1k8 punktów, wojownicy i czarodzieje 1k6 punktów, a kapłani 1k4 punkty. Jeśli postać posiada więcej niż jedną klasę, stosowana jest wyższa kostka. Zwinność kota nie może zwiększyć Zręczności powyżej 20.~
-@32=~Modyfikator zręczności~
-@33=~Lodowa lanca~
-@34=~Lodowa lanca
+@33=~Modyfikator zręczności~
+@34=~Lodowa lanca~
+@35=~Lodowa lanca
 (Wywoływanie)
 
 Poziom: 3
@@ -85,9 +86,9 @@ Obszar działania: 1 istota
 Rzut obronny: specjalny
 
 Czar ten wystrzeliwuje w kierunku wybranego przez czarodzieja celu magiczną lodową lancę. Trafia ona automatycznie, zadając 5k6 obrażeń od zimna i zmuszając ofiarę do wykonania rzutu obronnego przeciw czarom, by uniknąć ogłuszenia na trzy rundy.~
-@35=~Oszołomienie~
-@36=~Lanca zmącenia~
-@37=~Lanca zmącenia
+@36=~Oszołomienie~
+@37=~Lanca zmącenia~
+@38=~Lanca zmącenia
 (Inwokacje)
 
 Poziom: 3
@@ -98,9 +99,9 @@ Obszar działania: specjalny
 Rzut obronny: 1/2
 
 Czar ten tworzy lancę mocy, która wystrzeliwuje z ręki czarującego w kierunku wybranego przezeń punktu, znajdującego się w odległości nie większej, niż 33 metry. Każda istota znajdująca się na drodze lancy otrzymuje 5k4 obrażeń obuchowych plus 2 obrażenia na poziom czarującego (maksymalnie +30). Rzut obronny przeciw czarom obniża obrażenia połowę.~
-@38=~Szał~
-@39=~Płonąca krew Beltyna~
-@40=~Płonąca krew Beltyna
+@39=~Szał~
+@40=~Płonąca krew Beltyna~
+@41=~Płonąca krew Beltyna
 (Nekromancja)
 
 Poziom: 4
@@ -111,8 +112,8 @@ Obszar działania: 1 istota
 Rzut obronny: neguje
 
 Czar ten sprawia, że krew wybranej istoty wybucha żywym ogniem, sprawiając, że otrzymuje ona 3k4 obrażeń co rundę, a także wpada w berserk będący wynikiem odczuwanego bólu. Ofiara musi co rundę wykonywać rzut obronny przeciw czarom; udany pozwala uniknąć obrażeń oraz wpadnięcia w szał. Zaklęcie to nie działa na nieumarłych oraz istoty pozaplanarne nie posiadające krwi (takie jak żywiołaki). Jeśli stworzenie jest odporne na ogień, odporność ta obniży lub całkowicie zredukuje obrażenia otrzymane w wyniku działania tego czaru.~
-@41=~Emocje: odwaga~
-@42=~Emocje: odwaga
+@42=~Emocje: odwaga~
+@43=~Emocje: odwaga
 (Zaczarowania/Zauroczenia)
 
 Poziom: 4
@@ -123,8 +124,8 @@ Obszar działania: w promieniu 2 metrów
 Rzut obronny: brak
 
 Czar ten wywołuje uczucie odwagi na całym obszarze działania. Wszystkie istoty znajdujące się pod jego wpływem otrzymują premię +1 do testów trafienia, +3 do testów obrażeń oraz +5 tymczasowych punktów życia (punkty te mogą przekroczyć maksymalną dla danej istoty ilość). Zaklęcie to niweluje wszelkie efekty strachu, aktywne na obszarze jego działania w momencie rzucenia.~
-@43=~Emocje: nadzieja~
-@44=~Emocje: nadzieja
+@44=~Emocje: nadzieja~
+@45=~Emocje: nadzieja
 (Zaczarowania/Zauroczenia)
 
 Poziom: 4
@@ -135,8 +136,8 @@ Obszar działania: w promieniu 2 metrów
 Rzut obronny: brak
 
 Czar ten wywołuje uczucie nadziei na całym obszarze działania. Wszystkie istoty znajdujące się pod jego wpływem otrzymują premię +2 do rzutów obronnych, testów ataku oraz obrażeń, a ponadto wzrasta ich morale. W momencie rzucenia, zaklęcie to niweluje działanie czaru Emocje: beznadziejność.~
-@45=~Emocje: strach~
-@46=~Emocje: strach
+@46=~Emocje: strach~
+@47=~Emocje: strach
 (Zaczarowania/Zauroczenia)
 
 Poziom: 4
@@ -147,8 +148,8 @@ Obszar działania: w promieniu 2 metrów
 Rzut obronny: neguje
 
 Czar ten wywołuje uczucie strachu na całym obszarze działania. Wszyscy wrogowie, którzy nie wykonają rzutu obronnego przeciw czarom, uciekają w panice przez pięć rund. W momencie rzucenia, zaklęcie to niweluje działanie czaru Emocje: odwaga.~
-@47=~Emocje: beznadziejność~
-@48=~Emocje: beznadziejność 
+@48=~Emocje: beznadziejność~
+@49=~Emocje: beznadziejność 
 (Zaczarowania/Zauroczenia)
 
 Poziom: 4
@@ -159,8 +160,8 @@ Obszar działania: w promieniu 2 metrów
 Rzut obronny: neguje
 
 Czar ten wywołuje uczucie beznadziejności na całym obszarze działania. Wszyscy wrogowie, którzy nie wykonają rzutu obronnego przeciw czarom stoją bezczynnie przez jedną turę. Po rzuceniu, zaklęcie to anuluje, na obszarze swego działania, efekty czaru Emocje: nadzieja.~
-@49=~Beznadzieja~
-@50=~Pociski mocy Mordenkainena
+@50=~Beznadzieja~
+@51=~Pociski mocy Mordenkainena
 (Inwokacje)
 
 Poziom: 4
@@ -171,9 +172,9 @@ Obszar działania: w promieniu 0,5 metra
 Rzut obronny: specjalny
 
 Zaklęcie to powołuje do istnienia połyskującą kulę magicznej energii, która wystrzeliwuje z dłoni czarodzieja, trafiając bezbłędnie ofiarę. Można tutaj dostrzec duże podobieństwo do czaru Magiczny pocisk. Czarodziej tworzy jeden pocisk na 7. poziomie oraz kolejny pocisk, co każde trzy poziomy po poziomie siódmym (czyli dwa pociski na 10. poziomie, trzy na 13. poziomie, cztery na 16. poziomie itd., aż do maksymalnej ilości siedmiu pocisków na 25. poziomie. Każdy pocisk zadaje ofierze 2k4 obrażeń, a następnie wywołuje falę uderzeniową o promieniu 0,5 metra, zadającą 1 obrażenie na poziom czarującego. Przykładowo, czarodziej 12. poziomu może stworzyć dwa pociski, z których każdy zadaje 2k4 +12 magicznych obrażeń. Zaatakowane istoty mogą wykonać rzut obronny przeciw czarom, aby uniknąć obrażeń pochodzących od fali uderzeniowej, lecz nie od samego pocisku. Zaklęcie maga 1. poziomu o nazwie Tarcza unieszkodliwia pociski mocy, w tym obrażenia wywołane falą udrzeniową.~
-@51=~Pociski mocy Mordenkainena~
-@52=~Okrzyk~
-@53=~Okrzyk
+@52=~Pociski mocy Mordenkainena~
+@53=~Okrzyk~
+@54=~Okrzyk
 (Inwokacje)
 
 Poziom: 4
@@ -184,9 +185,9 @@ Obszar działania: 15° stożek o promieniu 5,5 metra
 Rzut obronny: specjalny
 
 Zaklęcie to obdarza czarującego nieprawdopodobnymi zdolnościami wokalnymi, pozwalając mu na emitowanie rozdzierającego uszy krzyku na obszarze przyjmującym kształt stożka. Każda istota znajdująca się objęta działaniem tego czaru staje się głucha przez dziewięć rund, a także otrzymuje 4k6 magicznych obrażeń. Rzut obronny przeciw czarom neguje głuchotę i obniża otrzymane obrażenia o połowę.~
-@54=~Głuchota~
-@55=~Kula z witriolem~
-@56=~Kula z witriolem
+@55=~Głuchota~
+@56=~Kula z witriolem~
+@57=~Kula z witriolem
 (Sprowadzanie)
 
 Poziom: 4
@@ -199,8 +200,8 @@ Rzut obronny: specjalny
 Czar ten przywołuje kulę migoczącego szmaragdowego kwasu, którą można skierować w stronę dowolnego celu znajdującego się w zasięgu wzroku. Kiedy kula dotrze do ofiary, wybucha, oblewając ją żrącym kwasem. Istota otrzymuje 1k4 obrażeń od kwasu na poziom czarującego; maksymalnie 12k4 obrażeń. Po początkowych obrażeniach, ofiara musi wykonać rzut obronny przeciw czarom celem uniknięcia kolejnych obrażeń. Jeśli zakończy się on niepowodzeniem, istota otrzymuje obrażenia od kwasu w kolejnych rundach, lecz z każdą rundą maleją one o 2 kostki. Przykładowo, czarodziej 8. poziomu zadaje 8k4 obrażeń w pierwszej rundzie, 6k4 w drugiej rundzie, 4k4 w trzeciej, 2k4 w czwartej, a działanie czaru kończy się w rundzie piątej. W każdej rundzie ofiara ataku może wykonać rzut obronny przeciw czarom, aby uniknąć dalszych obrażeń. 
 
 Kula z witriolem rozpryskuje kwas w promieniu 1,5 metra wokół istoty będącej celem ataku. Wszystkie stworzenia znajdujące się w obszarze rozprysku muszą wykonać rzut obronny przeciw polimorfii/paraliżowi, bądź otrzymają 1k4 obrażeń na każde pięć poziomów czarującego. Rozprysk nie powoduje ciągłych obrażeń.~
-@57=~Całun płomieni~
-@58=~Całun płomieni
+@58=~Całun płomieni~
+@59=~Całun płomieni
 (Inwokacje)
 
 Poziom: 5
@@ -211,7 +212,6 @@ Obszar działania: w promieniu 1,5 metra
 Rzut obronny: neguje
 
 Czar ten sprawia, że będąca pod jego wpływem istota wybucha płomieniami, jeśli nie wykona rzutu obronnego przeciw czarom. Ofiara będzie płonąć, otrzymując co rundę 2k6 obrażeń od ognia i wypluwając przy tym z siebie jęzory ognia, zadające 1k4 obrażeń od ognia każdemu stworzeniu, które znajduje się nie dalej, niż 1,5 metra od niej. Każdy, kto zostanie zraniony płomieniami buchającymi od ofiary, musi również wykonać rzut obronny przeciw czarom lub sam zajmie się ogniem. Całun ognia wygasza się, jeśli rzucający zaklęcie i ofiara nie znajdują się już na tym samym obszarze. Czar ten jest szczególnie użyteczny podczas potyczek z grupami trolli i lodowych salamander.~
-@59=~<NO TEXT>~
 @60=~Zamrażająca sfera Otiluke'a~
 @61=~Zamrażająca sfera Otiluke'a
 (Przemiany, Wywoływanie)
