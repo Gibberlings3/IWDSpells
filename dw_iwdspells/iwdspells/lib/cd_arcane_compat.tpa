@@ -3,10 +3,11 @@
 OUTER_SET ids_offset = 2000
 OUTER_SPRINT prefix spwi
 OUTER_SPRINT scroll cdia
-OUTER_SPRINT mc_trad Arcane
+OUTER_SPRINT cc_trad arcane
 OUTER_SET level_bump = 7
 
 // start atweaks, caster crafting array
+OUTER_SPRINT generic ~ACTION_DEFINE_ASSOCIATIVE_ARRAY iwdspells_%cc_trad% BEGIN%WNL%~
 OUTER_SPRINT cc_array ~ACTION_DEFINE_ASSOCIATIVE_ARRAY scroll_list BEGIN%WNL%~
 OUTER_SPRINT atweaks  ~ACTION_DEFINE_ASSOCIATIVE_ARRAY cd_mod_scrolls BEGIN%WNL%~
 
@@ -25,11 +26,13 @@ ACTION_PHP_EACH IWD_spell_installed AS spl => nul BEGIN
     ACTION_IF spl_level >= level_bump BEGIN OUTER_SET cast_level += 1 END
     
     COPY_EXISTING ~%spl_file%.spl~ ~override~
-      READ_LONG   0x08 name_strref
       READ_STRREF 0x08 name
+      READ_LONG   0x08 name_strref
+      READ_LONG   0x50 desc_strref
       BUT_ONLY
 
-    OUTER_SPRINT cc_array "%cc_array%%WNL%  ~%scroll_file%~, ~%spl_file%~, ~%mc_trad%~, ~%spl_level%~, ~%cast_level%~, ~0~ => ~%scroll_file%~ // %name%"
+    OUTER_SPRINT generic "%generic%%WNL%  ~%spl_file%~, ~%scroll_file%~, ~%name_strref%~, ~%desc_strref%~, ~%spl_level%~, ~%spl%~ => ~%spl_file%~ // %name%"
+    OUTER_SPRINT cc_array "%cc_array%%WNL%  ~%scroll_file%~, ~%spl_file%~, ~%cc_trad%~, ~%spl_level%~, ~%cast_level%~, ~0~ => ~%scroll_file%~ // %name%"
     OUTER_SPRINT atweaks  "%atweaks%%WNL%  ~%scroll_file%~, ~%spl_level%~, ~%name_strref%~ => ~%spl_file%~ // %name%"
       
   END
@@ -37,15 +40,36 @@ ACTION_PHP_EACH IWD_spell_installed AS spl => nul BEGIN
 END  
 
 // close arrays
+OUTER_SPRINT generic ~%generic%%WNL%%WNL%END~
 OUTER_SPRINT cc_array ~%cc_array%%WNL%%WNL%END~
 OUTER_SPRINT atweaks ~%atweaks%%WNL%%WNL%END~
+
+<<<<<<<<./inline/generic.tpa
+%generic%
+>>>>>>>>
+ACTION_IF FILE_EXISTS ~weidu_external/iwdspells/generic_%cc_trad%.tpa~ BEGIN // if exists, just append to file
+  COPY ~weidu_external/iwdspells/generic_%cc_trad%.tpa~ ~weidu_external/iwdspells/generic_%cc_trad%.tpa~ EVALUATE_BUFFER
+    APPEND_FILE ~./inline/generic.tpa~
+END ELSE BEGIN
+  COPY ~./inline/generic.tpa~ ~weidu_external/iwdspells/generic_%cc_trad%.tpa~ EVALUATE_BUFFER
+END
 
 <<<<<<<<./inline/cc_array.tpa
 %cc_array%
 >>>>>>>>
-COPY ~./inline/cc_array.tpa~ ~weidu_external/iwdification/compat_for_castercraft_%mc_trad%.tpa~ EVALUATE_BUFFER
+ACTION_IF FILE_EXISTS ~weidu_external/iwdspells/compat_for_castercraft_%cc_trad%.tpa~ BEGIN // if exists, just append to file
+  COPY ~weidu_external/iwdspells/compat_for_castercraft_%cc_trad%.tpa~ ~weidu_external/iwdspells/compat_for_castercraft_%cc_trad%.tpa~ EVALUATE_BUFFER
+    APPEND_FILE ~./inline/cc_array.tpa~
+END ELSE BEGIN
+  COPY ~./inline/cc_array.tpa~ ~weidu_external/iwdspells/compat_for_castercraft_%cc_trad%.tpa~ EVALUATE_BUFFER
+END
 
 <<<<<<<<./inline/atweaks.tpa
 %atweaks%
 >>>>>>>>
-COPY ~./inline/atweaks.tpa~ ~weidu_external/iwdification/compat_for_atweaks.tpa~ EVALUATE_BUFFER
+ACTION_IF FILE_EXISTS ~weidu_external/iwdspells/compat_for_atweaks.tpa~ BEGIN // if exists, just append to file
+  COPY ~weidu_external/iwdspells/compat_for_atweaks.tpa~ ~weidu_external/iwdspells/compat_for_atweaks.tpa~ EVALUATE_BUFFER
+    APPEND_FILE ~./inline/atweaks.tpa~
+END ELSE BEGIN
+  COPY ~./inline/atweaks.tpa~ ~weidu_external/iwdspells/compat_for_atweaks.tpa~ EVALUATE_BUFFER
+END
