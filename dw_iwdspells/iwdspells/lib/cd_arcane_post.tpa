@@ -182,6 +182,8 @@ DEFINE_ACTION_FUNCTION cd_arcane_post BEGIN
     COPY_EXISTING ~ltouch.spl~ ~override~
       LPF ALTER_EFFECT INT_VAR match_opcode = 215 opcode = 141 parameter2 = 1 END // from necroh
       
-  END    
+  END   
+
+  INCLUDE "%MOD_FOLDER%/%component_loc%/lib/cd_arcane_compat.tpa" // generates file for other mods to use for compatibility
 
 END
